@@ -81,22 +81,22 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 
 /* The logo file has an off-white background, so it sits on a matching plate. */
 .plate {
-  position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
-  background: var(--cream); padding: 30px 40px;
+  position: absolute; top: 80px; left: 80px;
+  background: var(--cream); padding: 26px 34px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 .plate::before {
   content: ""; position: absolute; inset: 10px;
   border: 1px solid rgba(184, 136, 48, 0.55); pointer-events: none;
 }
-.plate img { display: block; height: 220px; }
+.plate img { display: block; height: 180px; }
 
 /* Cover */
 .cover-text { position: absolute; left: 80px; right: 80px; bottom: 120px; }
 .cover-text .eyebrow { color: var(--gold-light); }
 .cover-text h1 {
-  margin-top: 30px; font: 600 200px/0.86 var(--serif); font-variant-numeric: lining-nums;
-  letter-spacing: -0.01em; color: var(--cream);
+  margin-top: 30px; font: 600 180px/0.9 var(--serif); font-variant-numeric: lining-nums;
+  letter-spacing: -0.01em; color: var(--cream); white-space: nowrap; overflow: hidden;
 }
 .cover-text .month {
   margin-top: 48px; font: italic 500 84px/1 var(--serif); font-variant-numeric: lining-nums; color: var(--gold-light);
@@ -105,8 +105,8 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .cover-text .pillars {
   font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82);
 }
-/* Optional line drawing of bales (--cover-art), right of the title. */
-.cover-art { position: absolute; right: 60px; top: 560px; width: 440px; color: var(--gold-light); opacity: 0.9; }
+/* Optional line drawing of bales (--cover-art), top right, opposite the logo. */
+.cover-art { position: absolute; right: 56px; top: 70px; width: 420px; color: var(--gold-light); opacity: 0.9; }
 .cover-art svg { display: block; width: 100%; height: auto; }
 .cover-contacts { margin-top: 30px; display: flex; gap: 40px; font: 600 26px/1 var(--sans); color: var(--cream); }
 .cover-contacts b { color: var(--gold-light); }

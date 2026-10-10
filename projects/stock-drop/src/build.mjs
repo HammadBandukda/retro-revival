@@ -222,7 +222,7 @@ function buildSlides(inv, { month, year }, assets) {
     <div class="cover-art">${assets.coverArt}</div>` : ""}
     <div class="cover-text">
       <div class="eyebrow">Monthly wholesale release</div>
-      <h1>Stock<br>Drop</h1>
+      <h1>Stock Drop</h1>
       <div class="month">${esc(label)}</div>
       <div class="rule"></div>
       <div class="pillars">Fresh containers every month, sorted into categorized bales<br>Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
@@ -287,7 +287,7 @@ await page.evaluate(() => document.fonts.ready);
 const clipped = await page.$$eval(".slide", (slides) =>
   slides.flatMap((s, i) => [
     ...[...s.querySelectorAll(".body")].filter((el) => el.scrollHeight > el.clientHeight + 1),
-    ...[...s.querySelectorAll(".rows .cat, .rows .pk, .section-head h2")].filter((el) => el.scrollWidth > el.clientWidth + 1),
+    ...[...s.querySelectorAll(".rows .cat, .rows .pk, .section-head h2, .cover-text h1")].filter((el) => el.scrollWidth > el.clientWidth + 1),
   ].map(() => i + 1)));
 if (clipped.length) fail(`text is cut off on slide ${[...new Set(clipped)].join(", ")}. Adjust the layout in build.mjs and styles.css`);
 
