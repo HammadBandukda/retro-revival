@@ -98,7 +98,7 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   letter-spacing: -0.01em; color: var(--cream);
 }
 .cover-text .month {
-  margin-top: 18px; font: italic 500 84px/1 var(--serif); font-variant-numeric: lining-nums; color: var(--gold-light);
+  margin-top: 48px; font: italic 500 84px/1 var(--serif); font-variant-numeric: lining-nums; color: var(--gold-light);
 }
 .cover-text .rule { width: 120px; height: 2px; background: var(--gold); margin: 44px 0 30px; }
 .cover-text .pillars {

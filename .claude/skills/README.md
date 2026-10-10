@@ -23,7 +23,7 @@ These skills are generic. Where they conflict with [CLAUDE.md](../../CLAUDE.md),
 ## Local notes
 
 - **Brand context:** the marketing skills read [.claude/product-marketing.md](../product-marketing.md) first. It points to the docs that hold each fact. Update the docs, not that file.
-- **`critique`:** it was written for the OpenDesign app. Here, point it at the slide PNGs in `projects/stock-drop/output/<month>/` and save the report as `critique.html` in the same folder.
+- **`critique`:** it was written for the OpenDesign app. Here, point it at the slide PNGs in `projects/stock-drop/output/<month>/` and save the report as `projects/stock-drop/reviews/<month>-critique.html`. The output folder is wiped on every build.
 
 ## Updating
 

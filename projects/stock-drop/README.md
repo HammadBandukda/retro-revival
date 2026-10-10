@@ -35,7 +35,9 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
    npm install            # first time only
    npm run build -- data/2026-11.xlsx
    ```
-3. Check `output/2026-11/overview.png`, then post `01.png` onward in order.
+3. Check `output/2026-11/overview.png`.
+4. Run the `critique` skill (report in `reviews/`) and the `social` skill (caption in `captions/`).
+5. Post `01.png` onward in order, with the caption.
 
 ### Sheet format
 
@@ -96,7 +98,9 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 ```
 stock-drop/
 ├── data/        # one inventory sheet per month (.xlsx or .csv)
-├── src/         # build script and contact details
+├── src/         # build script, contact details, spelling fixes
 ├── template/    # styles and fonts
-└── output/      # built slides, one folder per month
+├── output/      # built slides, one folder per month (rebuilt each run)
+├── captions/    # Instagram caption per month (social skill)
+└── reviews/     # design critique per month (critique skill)
 ```
