@@ -10,7 +10,10 @@ Project: [projects/stock-drop](../projects/stock-drop/README.md)
 
 ## Improvements
 
-From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html):
+From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html) (7.2/10):
+
+- [ ] **[Claude]** Cover: close the gap between the drawing and the title, and align the drawing's top with the logo
+- [ ] **[Client]** Tidy capitalisation in the sheet? ("Carhartt jeans", "Vintage mix Trouser", "Levi's Mix coded/codes")
 
 - [ ] **[Hammad]** Review the caption: [captions/2026-10.md](../projects/stock-drop/captions/2026-10.md)
 - [ ] **[Hammad]** Decide on text size: list lines are about 24px to fit 7 slides, below the roughly 28pt guideline. Options: keep it, allow 8–9 slides, or split the drop into two posts ([skills review](../docs/research/claude-skills.md#whats-useful-now))
