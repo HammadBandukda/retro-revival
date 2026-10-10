@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** October 2026 built from the client's sheet: 7 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
+**Status:** October 2026 built from the client's sheet: 8 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
 
 ## Brief
 
@@ -11,7 +11,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 - Show the latest monthly inventory
 - Build trust with international buyers
 - Make categories easy to browse
-- Increase WhatsApp and LINE inquiries
+- Increase WhatsApp inquiries
 - Present the warehouse as professional and reliable
 
 **What changes each month:** the month, the inventory quantities, and any new categories. **Everything else stays the same.**
@@ -61,7 +61,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
-- **Slide cap:** the build stops if every section can't fit whole within 7 slides.
+- **Slide cap:** the build stops if every section can't fit whole within 9 slides.
 - **Cover art:** a gold line drawing of strapped bales sits in the top right corner (`template/art/bales-line.svg`), opposite the logo. Add `--no-cover-art` to the build to leave it off.
 - **Cover background:** brand navy. If `assets/photos/warehouse.jpg` exists, the build uses it instead. Add the file and rebuild to switch to the photo.
 
@@ -73,17 +73,18 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 ## Slides
 
-Less is more: **7 slides at most**, the cover and the list. Nothing else.
+Less is more: **9 slides at most** (cover plus up to 8 list slides), built mobile-first. Nothing else.
 
 | # | Slide | Content |
 | :- | :- | :- |
-| 1 | Cover | Logo top left, line drawing of bales top right, "Stock Drop" on one line, month, every section as a pill, location, WhatsApp and LINE |
+| 1 | Cover | Logo top left, line drawing of bales top right, "Stock Drop" on one line, month, every section as a pill, location, WhatsApp in a gold pill |
 | 2–7 | List | Section name, then one row per bale: a container with the description and packing, and a separate box with the number of bales. One "BALES" label per slide sits above the boxes. **A section is never split across slides** |
 
-- List slides carry only the list, plus a footer with WhatsApp, LINE, and Instagram. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
+- List slides carry only the list, plus a footer with WhatsApp (in a navy pill) and the Instagram handle. LINE is not shown. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
 - **Emptiest slide last:** the slide with the most free space always goes at the end, so the carousel never looks finished early.
-- **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first where every section fits whole within 7 slides. If a month's sheet can't fit even at 54px, the build stops and names the largest section. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
+- **Auto-fit:** the build tries row heights from 80px down to 60px and uses the biggest where every section fits whole within 9 slides and no slide is less than half full. Bale names are capped at 32px so long names never cut off.
+- **Long sections:** a section too long for one slide at that size (October: Jeans, 19 lines) gets a slide to itself with tighter rows (down to 50px), so it never splits. If a section can't fit even then, the build stops and names it. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
 

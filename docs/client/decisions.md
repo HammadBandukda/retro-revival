@@ -4,6 +4,7 @@ Answers and decisions confirmed by the client or Hammad. Add new entries at the 
 
 | Date | Decision | Source | Docs updated |
 | :- | :- | :- | :- |
+| 2026-10-10 | Mobile-first: up to 9 slides with bigger type. Rows are sized per slide, so a long section (Jeans) stays whole on one denser slide. LINE removed from the carousel; WhatsApp is the only contact, highlighted in a pill | Hammad | projects/stock-drop |
 | 2026-10-10 | Cover lists every section as a pill; "Monthly wholesale release" and "Fresh containers every month" removed. List rows put the bale count in its own box, with one "BALES" label per slide | Hammad | projects/stock-drop |
 | 2026-10-10 | Cover B chosen: logo top left (enlarged), gold line drawing of bales top right, "Stock Drop" on one line. A/B record in `projects/stock-drop/reviews/2026-10-cover-ab/` | Hammad | projects/stock-drop |
 | 2026-10-10 | List rows use soft containers instead of rules and dotted leaders | Hammad | projects/stock-drop |

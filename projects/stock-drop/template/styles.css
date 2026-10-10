@@ -58,11 +58,15 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 
 .footer {
   position: absolute; left: 72px; right: 72px; bottom: 44px; height: 92px;
-  padding-top: 20px;
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
-.footer .contacts { flex: 1; display: flex; justify-content: space-between; gap: 34px; font: 500 21px/1 var(--sans); letter-spacing: 0.02em; }
-.footer b, .cover-contacts b { font-weight: 600; letter-spacing: 0.2em; font-size: 15px; margin-right: 10px; color: var(--gold-dark); }
+/* WhatsApp is the one call to action, so it gets a pill. */
+.wa {
+  display: inline-flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 999px;
+  background: var(--navy); color: var(--cream); font: 700 30px/1 var(--sans); letter-spacing: 0.01em;
+}
+.wa b { font: 700 16px/1 var(--sans); letter-spacing: 0.2em; color: var(--gold-light); }
+.footer .ig { font: 500 24px/1 var(--sans); color: rgba(28, 44, 60, 0.7); }
 
 /* ---------- Cover ---------- */
 
@@ -103,15 +107,16 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 }
 .cover-text .pills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .cover-text .pills span {
-  padding: 11px 18px; border-radius: 999px; background: rgba(247, 246, 244, 0.09);
-  font: 500 21px/1 var(--sans); color: var(--cream); white-space: nowrap;
+  padding: 12px 20px; border-radius: 999px; background: rgba(247, 246, 244, 0.1);
+  font: 500 25px/1 var(--sans); color: var(--cream); white-space: nowrap;
 }
-.cover-text .pillars { margin-top: 36px; font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82); }
+.cover-text .pillars { margin-top: 34px; font: 400 28px/1.45 var(--sans); color: rgba(247, 246, 244, 0.85); }
 /* Line drawing of bales, top right, opposite the logo (--no-cover-art turns it off). */
 .cover-art { position: absolute; right: 56px; top: 96px; width: 440px; color: var(--gold-light); opacity: 0.9; }
 .cover-art svg { display: block; width: 100%; height: auto; }
-.cover-contacts { margin-top: 30px; display: flex; gap: 40px; font: 600 26px/1 var(--sans); color: var(--cream); }
-.cover-contacts b { color: var(--gold-light); }
+.cover-contacts { margin-top: 30px; display: flex; }
+.cover-contacts .wa { background: var(--gold-light); color: var(--navy); font-size: 34px; padding: 18px 30px; }
+.cover-contacts .wa b { color: var(--navy); }
 .swipe {
   position: absolute; right: 80px; bottom: 120px;
   font: 600 18px/1 var(--sans); letter-spacing: 0.3em; color: var(--cream);
@@ -126,16 +131,16 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .block + .block { margin-top: 26px; }
 .section-head {
   display: flex; align-items: flex-end; gap: 20px;
-  height: 76px; padding: 0 0 14px 22px;
+  height: 88px; padding: 0 0 16px 22px;
 }
-.section-head h2 { margin: 0; font: 600 54px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; }
+.section-head h2 { margin: 0; font: 600 62px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; }
 .section-head .qt {
-  margin-left: auto; padding-bottom: 6px; font: 600 15px/1 var(--sans); letter-spacing: 0.22em;
+  margin-left: auto; padding-bottom: 8px; font: 600 18px/1 var(--sans); letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--gold-dark); text-align: center;
 }
 
 /* Row: [ name · packing ] [ bales ]. One "BALES" label per slide sits above the box column. */
-.section-head .qt, .rows .qty { width: 104px; }
+.section-head .qt, .rows .qty { width: 116px; }
 
 .rows li {
   list-style: none; display: flex; gap: 8px;
@@ -146,8 +151,8 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   flex: 1; min-width: 0; display: flex; align-items: center; gap: 16px;
   padding: 0 22px; background: var(--card); border-radius: 12px;
 }
-.rows .cat { flex: 1; min-width: 0; font: 500 calc(var(--row) * 0.44)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
-.rows .pk { flex: none; font: 600 17px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
+.rows .cat { flex: 1; min-width: 0; font: 500 min(calc(var(--row) * 0.44), 32px)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
+.rows .pk { flex: none; font: 600 calc(var(--row) * 0.27)/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
 .rows .qty {
   flex: none; display: flex; align-items: center; justify-content: center;
   background: var(--qty-box); border-radius: 12px;

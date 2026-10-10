@@ -37,7 +37,7 @@ Public GitHub skill packs reviewed for Retro Revival work: design review, social
 - **The free WhatsApp Business app** is fine for answering buyers by hand. The paid API is only worth it for automated broadcasts at scale.
 - **Click-to-WhatsApp ads** on Instagram and Facebook open a free 24-hour chat window. This fits a business whose call to action is "message us on WhatsApp."
 - **Broadcasts:** keep marketing messages to opted-in buyers at about 1–2 a month, or blocks lower the number's rating. A monthly Stock Drop broadcast fits.
-- **Market check:** in Thailand, LINE is used more than WhatsApp. Keep both on every post, as the slides already do.
+- **Market check:** in Thailand, LINE is used more than WhatsApp. The carousel now shows WhatsApp only (Hammad's call), so keep an eye on enquiries from Thai resellers.
 - **Prospecting fits two ways:**
   - The B2B playbook covers importers and wholesalers.
   - The local-shop playbook covers vintage stores in the target markets, using Google Maps, directories, and Instagram.

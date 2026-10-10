@@ -3,7 +3,6 @@
 
 export const CONTACT = {
   whatsapp: "+66 94 395 4613",
-  line: "Asim.dhedhi",
   instagram: "@retrorevival.thailand",
   locationPitch: "20 minutes from Suvarnabhumi Airport",
 };

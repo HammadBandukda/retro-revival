@@ -17,7 +17,7 @@ Files are copied unchanged (dev-only `evals/` folders left out), with each repo'
 These skills are generic. Where they conflict with [CLAUDE.md](../../CLAUDE.md), CLAUDE.md wins:
 
 - **Never invent numbers, results, prices, ratings, or shipping countries.** Several hook formulas ask for a "specific result". Use only confirmed facts from `docs/`.
-- **The Stock Drop design rules stay fixed** ([projects/stock-drop](../../projects/stock-drop/README.md)): 7 slides at most, no progress bars, page numbers, or totals.
+- **The Stock Drop design rules stay fixed** ([projects/stock-drop](../../projects/stock-drop/README.md)): 9 slides at most, no progress bars, page numbers, or totals. WhatsApp is the only contact shown.
 - **Nothing gets posted, sent, or scheduled without Hammad's go-ahead.**
 
 ## Local notes

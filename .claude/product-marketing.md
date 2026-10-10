@@ -55,10 +55,10 @@ Confirmed: registered company, warehouse location, Google Maps listing. **TBC:**
 
 ## Channels
 
-Instagram @retrorevival.thailand (main), WhatsApp +66 94 395 4613, LINE Asim.dhedhi. LINE matters most in Thailand.
+Instagram @retrorevival.thailand (main), WhatsApp +66 94 395 4613 (the only contact on posts), LINE Asim.dhedhi (not shown on the carousel).
 → [online presence](../docs/research/online-presence.md)
 
 ## Goals
 
-More WhatsApp and LINE enquiries from wholesale buyers. First deliverable: the monthly Stock Drop carousel.
+More WhatsApp enquiries from wholesale buyers. First deliverable: the monthly Stock Drop carousel.
 → [roadmap](../docs/strategy/roadmap.md), [to-dos](../to-dos/README.md)

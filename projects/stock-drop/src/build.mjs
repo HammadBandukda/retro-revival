@@ -19,11 +19,12 @@ const REPO = resolve(ROOT, "../..");
 
 // Layout budget for inventory slides, in px. Must match template/styles.css.
 const BODY_HEIGHT = 1130;
-const HEAD_HEIGHT = 76;
+const HEAD_HEIGHT = 88;
 const SECTION_GAP = 26;
 // Row heights to try, most readable first. The build uses the first one that fits the cap.
-const ROW_HEIGHTS = [72, 68, 64, 60, 57, 54];
-const MAX_SLIDES = 7; // cover + list slides
+const ROW_HEIGHTS = [80, 76, 72, 68, 64, 60];
+const MIN_ROW = 50; // floor for a section so long it fills a slide on its own (e.g. Jeans)
+const MAX_SLIDES = 9; // cover + list slides
 
 // Sheet headers we read, matched case-insensitively. First match wins.
 const COLUMNS = {
@@ -165,18 +166,25 @@ const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 const packingLabel = (p) => p.replace(/^(\d+)\s*/, "$1 ");
 
 // Sections are never split across slides. They are packed onto slides largest first
-// (first-fit decreasing), then each slide lists its sections in sheet order, and the
-// slides run in the order of their first section in the sheet, except the emptiest
-// slide, which always goes last.
+// (first-fit decreasing) at the target row height. A section too long for one slide at
+// that height gets a slide to itself, with its rows shrunk to fit (down to MIN_ROW).
+// Each slide lists its sections in sheet order; slides run in the order of their first
+// section in the sheet, except the emptiest slide, which always goes last.
 function paginate(sections, rowHeight) {
   const height = (s) => HEAD_HEIGHT + s.items.length * rowHeight;
-  if (sections.some((s) => height(s) > BODY_HEIGHT)) return null;
   const order = sections.map((s, i) => ({ s, i })).sort((a, b) => height(b.s) - height(a.s));
   const pages = [];
   for (const entry of order) {
-    const page = pages.find((p) => p.used + SECTION_GAP + height(entry.s) <= BODY_HEIGHT);
-    if (page) { page.entries.push(entry); page.used += SECTION_GAP + height(entry.s); }
-    else pages.push({ entries: [entry], used: height(entry.s) });
+    const h = height(entry.s);
+    if (h > BODY_HEIGHT) {
+      const row = Math.floor((BODY_HEIGHT - HEAD_HEIGHT) / entry.s.items.length);
+      if (row < MIN_ROW) return null;
+      pages.push({ entries: [entry], used: BODY_HEIGHT, row, solo: true });
+      continue;
+    }
+    const page = pages.find((p) => !p.solo && p.used + SECTION_GAP + h <= BODY_HEIGHT);
+    if (page) { page.entries.push(entry); page.used += SECTION_GAP + h; }
+    else pages.push({ entries: [entry], used: h, row: rowHeight });
   }
   const ordered = pages
     .map((p) => ({ ...p, entries: p.entries.sort((a, b) => a.i - b.i) }))
@@ -184,30 +192,30 @@ function paginate(sections, rowHeight) {
   // The emptiest slide goes last, so the carousel doesn't look finished early.
   const emptiest = ordered.reduce((m, p, i) => (p.used < ordered[m].used ? i : m), 0);
   ordered.push(...ordered.splice(emptiest, 1));
-  return ordered.map((p) => ({ blocks: p.entries.map(({ s }) => ({ section: s, rows: s.items })) }));
+  return ordered.map((p) => ({ row: p.row, fill: p.used / BODY_HEIGHT, blocks: p.entries.map(({ s }) => ({ section: s, rows: s.items })) }));
 }
 
+// Use the biggest row height that fits the cap, unless it leaves a slide less than half
+// full (e.g. one line alone at the end); then step down to a size that packs evenly.
+const MIN_FILL = 0.5;
 function fitPages(sections) {
-  for (const row of ROW_HEIGHTS) {
-    const pages = paginate(sections, row);
-    if (pages && pages.length + 1 <= MAX_SLIDES) return { pages, row };
-  }
+  const fits = ROW_HEIGHTS.map((row) => paginate(sections, row))
+    .filter((pages) => pages && pages.length + 1 <= MAX_SLIDES);
+  const even = fits.find((pages) => Math.min(...pages.map((p) => p.fill)) >= MIN_FILL);
+  if (even || fits.length) return even ?? fits[0];
   const biggest = sections.reduce((a, b) => (b.items.length > a.items.length ? b : a));
   fail(`can't fit every section whole within ${MAX_SLIDES} slides, even at the smallest row size. ` +
     `The largest section is "${biggest.name}" (${biggest.items.length} lines). Raise MAX_SLIDES in build.mjs, or split the post`);
 }
 
 function buildSlides(inv, { month, year }, assets) {
-  const { pages, row } = fitPages(inv.sections);
+  const pages = fitPages(inv.sections);
 
   const label = `${month} ${year}`;
   const footer = `
     <div class="footer">
-      <div class="contacts">
-        <span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
-        <span><b>LINE</b>${esc(CONTACT.line)}</span>
-        <span>${esc(CONTACT.instagram)}</span>
-      </div>
+      <span class="wa"><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
+      <span class="ig">${esc(CONTACT.instagram)}</span>
     </div>`;
   const photo = assets.photo
     ? `<div class="photo" style="background-image:url('${assets.photo}')"></div>`
@@ -225,7 +233,7 @@ function buildSlides(inv, { month, year }, assets) {
       <div class="month">${esc(label)}</div>
       <div class="pills">${inv.sections.map((x) => `<span>${esc(x.name)}</span>`).join("")}</div>
       <div class="pillars">Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
-      <div class="cover-contacts"><span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span><span><b>LINE</b>${esc(CONTACT.line)}</span></div>
+      <div class="cover-contacts"><span class="wa"><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span></div>
     </div>
     <div class="swipe">SWIPE<span>→</span></div>
   </section>`);
@@ -233,7 +241,7 @@ function buildSlides(inv, { month, year }, assets) {
   pages.forEach((p) => {
     slides.push(`
   <section class="slide">
-    <div class="body" style="--row:${row}px">${p.blocks.map((b, bi) => `
+    <div class="body" style="--row:${p.row}px">${p.blocks.map((b, bi) => `
       <div class="block">
         <div class="section-head"><h2>${esc(b.section.name)}</h2>${bi === 0 ? `<span class="qt">${esc(unitWord)}</span>` : ""}</div>
         <ul class="rows">${b.rows.map((r) => `

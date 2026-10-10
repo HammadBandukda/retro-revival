@@ -12,9 +12,8 @@ Project: [projects/stock-drop](../projects/stock-drop/README.md)
 
 From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html) (7.2/10):
 
-- [ ] **[Claude]** Cover: close the gap between the drawing and the title, and align the drawing's top with the logo
+- [ ] **[Claude]** Cover: align the drawing's top with the logo plate
 - [ ] **[Client]** Tidy capitalisation in the sheet? ("Carhartt jeans", "Vintage mix Trouser", "Levi's Mix coded/codes")
-
 - [ ] **[Hammad]** Review the caption: [captions/2026-10.md](../projects/stock-drop/captions/2026-10.md)
-- [ ] **[Hammad]** Decide on text size: list lines are about 24px to fit 7 slides, below the roughly 28pt guideline. Options: keep it, allow 8–9 slides, or split the drop into two posts ([skills review](../docs/research/claude-skills.md#whats-useful-now))
+- [ ] **[Hammad]** Jeans slide: keep it whole at a denser size (names 24px), or split it across two slides at full size
 - [ ] **[Hammad]** Upload the original `ETA141026.xlsx` to `projects/stock-drop/data/` on GitHub. The file on record is a CSV rebuilt from the sheet's text
