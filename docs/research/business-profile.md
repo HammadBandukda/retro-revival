@@ -26,7 +26,7 @@ Bales are labelled by category and piece count. Examples seen on Instagram:
 ## Brand
 
 - **Logo:** a royal crest with two gold lions on either side of a navy shield, which carries an interlocking **"RR"** monogram.
-- **Palette:** gold, navy, and off-white.
+- **Palette:** gold, navy, and off-white (hex values in [brand direction](../strategy/brand-direction.md#colours)).
 - **Positioning:** premium and heritage.
 
 > ⚠️ **Trademark risk:** the RR monogram looks a lot like the Rolls-Royce mark. Raise this with the client before investing in brand assets.

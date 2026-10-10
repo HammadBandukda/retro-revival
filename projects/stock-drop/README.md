@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** waiting on source files (logo, warehouse photo, inventory spreadsheet, layout reference).
+**Status:** logo received (`assets/brand/logo-primary.png`). Still waiting on the warehouse photo, inventory spreadsheet, and layout reference.
 
 ## Brief
 

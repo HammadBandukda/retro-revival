@@ -27,7 +27,20 @@ Vintage wholesalers, vintage boutique owners, Instagram live sellers, online res
 
 > These are *target* markets. They are not confirmed shipping destinations, so don't present them as "countries we ship to" (see [open questions](../client/open-questions.md)).
 
+## Colours
+
+Sampled from the official logo.
+
+| Name | Hex | Taken from |
+| :- | :- | :- |
+| Navy | `#1C2C3C` | Wordmark text |
+| Shield navy | `#1D2E4A` | Shield fill |
+| Gold | `#B88830` | Lions and monogram |
+| Off-white | `#F7F6F4` | Logo background |
+
 ## Brand assets
 
 - **Logo:** the official logo is final. Use the supplied file as is. Do not redraw or redesign it. The trademark question is still open (see [business profile](../research/business-profile.md#brand)).
+  - File: `assets/brand/logo-primary.png`, 1280×853 PNG on an off-white background. Source: Figma, *Quick Projects* → *Retro-Revival/Logo*.
+  - It has no transparent background, no vector version, and no light version for dark backgrounds yet (see [open questions](../client/open-questions.md)).
 - **Warehouse photography:** use the client's real warehouse photos to show authenticity. Stored in `assets/photos/`.

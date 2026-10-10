@@ -11,6 +11,7 @@ When a question is answered, record the answer in [decisions.md](decisions.md) a
 - [ ] 7. Do they know about the RR / Rolls-Royce similarity? Are they open to refining the logo?
 - [ ] 8. What is the full bale category list, with current stock?
 - [ ] 9. Do they have any photo or video library beyond IG?
+- [ ] 10. Can they supply the logo as a vector file (SVG, AI, or EPS), or at least as a transparent PNG? Is there a light version for dark backgrounds? The current file is a 1280px PNG on an off-white background, and the "THAILAND" text on the ribbon is blurry
 
 ## Unverified assumptions to confirm
 
