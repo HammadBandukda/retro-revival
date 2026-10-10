@@ -13,4 +13,3 @@ Project: [projects/stock-drop](../projects/stock-drop/README.md)
 
 - [ ] **[Hammad]** Upload the original `ETA141026.xlsx` to `projects/stock-drop/data/` on GitHub. The file on record is a CSV rebuilt from the sheet's text
 - [ ] **[Claude]** Write the Instagram caption and hashtags for the post
-- [ ] **[Claude]** Stop a short last section ("Winter", one line) from getting a slide to itself

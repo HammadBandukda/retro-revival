@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** October 2026 built from the client's sheet: 12 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
+**Status:** October 2026 built from the client's sheet: 7 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
 
 ## Brief
 
@@ -24,7 +24,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 | :- | :- |
 | Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities |
 | Logo | Official. Use the file as is. Never redraw it |
-| Warehouse photo | The real warehouse. Use it as the background to show authenticity. None exists yet, so the slides use a plain navy background |
+| Warehouse photo | The real warehouse. Use it as the background to show authenticity. None exists yet, so the cover uses a plain navy background |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
 
 ## Monthly workflow
@@ -56,8 +56,8 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
-- **Slide limit:** the build stops if the carousel goes over Instagram's limit of 20 slides.
-- **No photo:** if `assets/photos/warehouse.jpg` is missing, the cover and contact slides use a plain navy background. Add the file and rebuild to switch to the photo.
+- **Slide cap:** the build stops if the list can't fit in 7 slides.
+- **No photo:** if `assets/photos/warehouse.jpg` is missing, the cover uses a plain navy background. Add the file and rebuild to switch to the photo.
 
 ### Data on file
 
@@ -67,15 +67,15 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 ## Slides
 
-Less is more: the cover, the list, and how to order. Nothing else.
+Less is more: **7 slides at most**, the cover and the list. Nothing else.
 
 | # | Slide | Content |
 | :- | :- | :- |
-| 1 | Cover | Logo, "Stock Drop", month |
-| 2+ | List | Section name, then one line per bale: description, packing, bales. Sections flow across slides, with at least 2 lines on each side of a split |
-| Last | Contact | WhatsApp, LINE, address, Instagram |
+| 1 | Cover | Logo, "Stock Drop", month, location, WhatsApp and LINE |
+| 2–7 | List | Section name, then one line per bale: description, packing, bales. Sections flow across slides, with at least 2 lines on each side of a split |
 
-List slides carry only the logo at the top and the WhatsApp, LINE, and Instagram details at the bottom. No index, totals, page numbers, or section numbers.
+- List slides carry only the list, plus a footer with the logo, WhatsApp, LINE, and Instagram. No index, totals, page numbers, or section numbers.
+- **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first that fits in 7 slides. If a month's sheet is too long even at 54px, the build stops and says so. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
 

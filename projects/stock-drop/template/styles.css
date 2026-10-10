@@ -51,23 +51,18 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   text-transform: uppercase;
 }
 
-/* ---------- Shared chrome (cream slides) ---------- */
+/* ---------- Footer (list slides): logo + contacts ---------- */
 
-.chrome-top {
-  position: absolute; top: 56px; left: 72px; right: 72px;
-  display: flex; align-items: center; justify-content: space-between;
+.footer {
+  position: absolute; left: 72px; right: 72px; bottom: 44px; height: 92px;
+  padding-top: 20px; border-top: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
-.chrome-top .logo { height: 104px; mix-blend-mode: multiply; }
+.footer .logo { height: 72px; mix-blend-mode: multiply; }
+.footer .contacts { display: flex; gap: 34px; font: 500 21px/1 var(--sans); letter-spacing: 0.02em; }
+.footer b, .cover-contacts b { font-weight: 600; letter-spacing: 0.2em; font-size: 15px; margin-right: 10px; color: var(--gold-dark); }
 
-.chrome-bottom {
-  position: absolute; left: 72px; right: 72px; bottom: 56px;
-  padding-top: 28px; border-top: 1px solid var(--rule);
-  display: flex; justify-content: space-between;
-  font: 500 21px/1 var(--sans); letter-spacing: 0.02em;
-}
-.chrome-bottom b { font-weight: 600; letter-spacing: 0.2em; font-size: 15px; margin-right: 10px; color: var(--gold-dark); }
-
-/* ---------- Photo slides (cover, contact) ---------- */
+/* ---------- Cover ---------- */
 
 .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
 /* Used when there is no warehouse photo: brand navy with a soft light at the top. */
@@ -109,27 +104,27 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .cover-text .pillars {
   font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82);
 }
+.cover-contacts { margin-top: 30px; display: flex; gap: 40px; font: 600 26px/1 var(--sans); color: var(--cream); }
+.cover-contacts b { color: var(--gold-light); }
 .swipe {
   position: absolute; right: 80px; bottom: 120px;
   font: 600 18px/1 var(--sans); letter-spacing: 0.3em; color: var(--cream);
 }
 .swipe span { color: var(--gold-light); font-size: 26px; margin-left: 10px; vertical-align: -2px; }
 
-/* ---------- Inventory body ---------- */
+/* ---------- List slides ---------- */
 
-.body { position: absolute; top: 220px; left: 72px; right: 72px; height: 980px; } /* BODY_HEIGHT in build.mjs */
-
-/* ---------- Inventory ---------- */
-
-/* HEAD_HEIGHT, ROW_HEIGHT and SECTION_GAP in build.mjs must match these. */
-.block + .block { margin-top: 44px; }
+/* BODY_HEIGHT, HEAD_HEIGHT and SECTION_GAP in build.mjs must match these.
+   --row is set per slide by the build: the largest row height that fits the slide cap. */
+.body { position: absolute; top: 64px; left: 72px; right: 72px; height: 1130px; }
+.block + .block { margin-top: 26px; }
 .section-head {
-  display: flex; align-items: baseline; gap: 20px;
-  height: 112px; padding-top: 20px; border-bottom: 2px solid var(--navy);
+  display: flex; align-items: flex-end; gap: 20px;
+  height: 76px; padding-bottom: 12px; border-bottom: 2px solid var(--navy);
 }
-.section-head h2 { margin: 0; font: 600 76px/1 var(--serif); white-space: nowrap; }
+.section-head h2 { margin: 0; font: 600 54px/1 var(--serif); white-space: nowrap; }
 .section-head .qt {
-  margin-left: auto; font: 600 14px/1 var(--sans); letter-spacing: 0.24em;
+  margin-left: auto; padding-bottom: 6px; font: 600 14px/1 var(--sans); letter-spacing: 0.24em;
   text-transform: uppercase; color: rgba(28,44,60,0.5);
 }
 
@@ -138,23 +133,10 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .section-head .qt, .rows .qty { width: 96px; text-align: right; }
 
 .rows li {
-  list-style: none; display: flex; align-items: baseline; gap: 16px;
-  height: 66px; padding-top: 17px; border-bottom: 1px solid var(--rule);
+  list-style: none; display: flex; align-items: center; gap: 16px;
+  height: var(--row); border-bottom: 1px solid var(--rule);
 }
-.rows .cat { min-width: 0; font: 500 31px/1.1 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
-.rows .leader { flex: 1; min-width: 24px; border-bottom: 2px dotted rgba(28,44,60,0.22); transform: translateY(-7px); }
-.rows .pk { flex: none; font: 600 18px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
-.rows .qty { flex: none; font: 600 48px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
-
-/* ---------- Contact ---------- */
-
-.contact-text { position: absolute; left: 80px; right: 80px; bottom: 96px; color: var(--cream); }
-.contact-text .eyebrow { color: var(--gold-light); }
-.contact-text h2 { margin-top: 24px; font: 600 132px/0.9 var(--serif); }
-.contact-text .lede { margin-top: 24px; font: 400 26px/1.45 var(--sans); color: rgba(247,246,244,0.8); }
-.channels { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.channels > div { border: 1px solid rgba(210,173,102,0.6); padding: 26px 30px; }
-.channels .eyebrow { font-size: 16px; }
-.channels .v { margin-top: 14px; font: 600 38px/1 var(--sans); letter-spacing: 0.01em; white-space: nowrap; }
-.address { margin-top: 36px; display: flex; justify-content: space-between; gap: 40px; font: 400 21px/1.5 var(--sans); color: rgba(247,246,244,0.72); }
-.address strong { color: var(--cream); font-weight: 600; }
+.rows .cat { min-width: 0; font: 500 calc(var(--row) * 0.44)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
+.rows .leader { flex: 1; min-width: 24px; align-self: center; border-bottom: 2px dotted rgba(28,44,60,0.22); transform: translateY(6px); }
+.rows .pk { flex: none; font: 600 17px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
+.rows .qty { flex: none; font: 600 calc(var(--row) * 0.62)/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }

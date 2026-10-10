@@ -16,11 +16,12 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(ROOT, "../..");
 
 // Layout budget for inventory slides, in px. Must match template/styles.css.
-const BODY_HEIGHT = 980;
-const HEAD_HEIGHT = 112;
-const ROW_HEIGHT = 66;
-const SECTION_GAP = 44;
-const IG_MAX_SLIDES = 20;
+const BODY_HEIGHT = 1130;
+const HEAD_HEIGHT = 76;
+const SECTION_GAP = 26;
+// Row heights to try, most readable first. The build uses the first one that fits the cap.
+const ROW_HEIGHTS = [72, 68, 64, 60, 57, 54];
+const MAX_SLIDES = 7; // cover + list slides
 
 // Sheet headers we read, matched case-insensitively. First match wins.
 const COLUMNS = {
@@ -155,7 +156,7 @@ const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 // Display-only spacing fix for packing such as "200Pcs" -> "200 Pcs". The words are not changed.
 const packingLabel = (p) => p.replace(/^(\d+)\s*/, "$1 ");
 
-function paginate(sections) {
+function paginate(sections, rowHeight) {
   // Flow sections down the slides like a catalogue. A section that doesn't fit is split,
   // carrying at least 2 lines on each side so no line is stranded on its own.
   const MIN_ROWS = 2;
@@ -168,80 +169,74 @@ function paginate(sections) {
     while (i < s.items.length) {
       const left = s.items.length - i;
       const gap = page.blocks.length ? SECTION_GAP : 0;
-      let fit = Math.floor((BODY_HEIGHT - used - gap - HEAD_HEIGHT) / ROW_HEIGHT);
+      let fit = Math.floor((BODY_HEIGHT - used - gap - HEAD_HEIGHT) / rowHeight);
       if (fit < left && left - fit < MIN_ROWS) fit = left - MIN_ROWS; // leave 2+ for the next slide
       if (fit < Math.min(MIN_ROWS, left)) { newPage(); continue; }
       const rows = s.items.slice(i, i + Math.min(fit, left));
       page.blocks.push({ section: s, rows });
-      used += gap + HEAD_HEIGHT + rows.length * ROW_HEIGHT;
+      used += gap + HEAD_HEIGHT + rows.length * rowHeight;
       i += rows.length;
     }
   });
   return pages;
 }
 
+function fitPages(sections) {
+  for (const row of ROW_HEIGHTS) {
+    const pages = paginate(sections, row);
+    if (pages.length + 1 <= MAX_SLIDES) return { pages, row };
+  }
+  const smallest = ROW_HEIGHTS.at(-1);
+  fail(`the list needs ${paginate(sections, smallest).length + 1} slides even at the smallest row size, over the cap of ${MAX_SLIDES}. Raise MAX_SLIDES in build.mjs`);
+}
+
 function buildSlides(inv, { month, year }, assets) {
-  const pages = paginate(inv.sections);
-  const total = pages.length + 2; // cover, ...inventory, contact
-  if (total > IG_MAX_SLIDES) fail(`${total} slides is over Instagram's limit of ${IG_MAX_SLIDES}`);
+  const { pages, row } = fitPages(inv.sections);
 
   const label = `${month} ${year}`;
-  const top = `
-    <div class="chrome-top"><img class="logo" src="${assets.logo}" alt="Retro Revival Thailand"></div>`;
-  const bottom = `
-    <div class="chrome-bottom">
-      <span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
-      <span><b>LINE</b>${esc(CONTACT.line)}</span>
-      <span>${esc(CONTACT.instagram)}</span>
+  const footer = `
+    <div class="footer">
+      <img class="logo" src="${assets.logo}" alt="Retro Revival Thailand">
+      <div class="contacts">
+        <span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
+        <span><b>LINE</b>${esc(CONTACT.line)}</span>
+        <span>${esc(CONTACT.instagram)}</span>
+      </div>
     </div>`;
   const photo = assets.photo
     ? `<div class="photo" style="background-image:url('${assets.photo}')"></div>`
     : `<div class="photo none"></div>`;
-  const plate = `<div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>`;
   const unitWord = inv.unit || "Qty";
 
   const slides = [];
 
   slides.push(`
-  <section class="slide dark">${photo}<div class="shade"></div>${plate}
+  <section class="slide dark">${photo}<div class="shade"></div>
+    <div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>
     <div class="cover-text">
       <div class="eyebrow">Monthly wholesale release</div>
       <h1>Stock<br>Drop</h1>
       <div class="month">${esc(label)}</div>
       <div class="rule"></div>
-      <div class="pillars">Fresh containers every month<br>Sorted into categorized bales · Bangkok, Thailand</div>
+      <div class="pillars">Fresh containers every month, sorted into categorized bales<br>Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
+      <div class="cover-contacts"><span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span><span><b>LINE</b>${esc(CONTACT.line)}</span></div>
     </div>
     <div class="swipe">SWIPE<span>→</span></div>
   </section>`);
 
   pages.forEach((p) => {
     slides.push(`
-  <section class="slide">${top}
-    <div class="body">${p.blocks.map((b) => `
+  <section class="slide">
+    <div class="body" style="--row:${row}px">${p.blocks.map((b) => `
       <div class="block">
         <div class="section-head"><h2>${esc(b.section.name)}</h2><span class="qt">${esc(unitWord)}</span></div>
         <ul class="rows">${b.rows.map((r) => `
           <li><span class="cat">${esc(r.category)}</span><span class="leader"></span><span class="pk">${esc(packingLabel(r.packing))}</span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
         </ul>
       </div>`).join("")}
-    </div>${bottom}
+    </div>${footer}
   </section>`);
   });
-
-  slides.push(`
-  <section class="slide dark">${photo}<div class="shade"></div>${plate}
-    <div class="contact-text">
-      <div class="eyebrow">Wholesale enquiries</div>
-      <h2>Reserve<br>your bales</h2>
-      <p class="lede">Message us on WhatsApp or LINE with the bales you want.</p>
-      <div class="channels">
-        <div><div class="eyebrow">WhatsApp</div><div class="v">${esc(CONTACT.whatsapp)}</div></div>
-        <div><div class="eyebrow">LINE ID</div><div class="v">${esc(CONTACT.line)}</div></div>
-      </div>
-      <div class="address"><span><strong>Visit the warehouse</strong><br>${esc(CONTACT.address)}</span>
-        <span style="text-align:right"><strong>${esc(CONTACT.instagram)}</strong><br>${esc(CONTACT.locationPitch)}</span></div>
-    </div>
-  </section>`);
 
   return slides;
 }
@@ -300,5 +295,5 @@ await page.screenshot({ path: join(outDir, "overview.png"), fullPage: true });
 rmSync(overviewPath);
 await browser.close();
 
-console.log(`${els.length} slides → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
-if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg, so the cover and contact slides use the plain navy background.");
+console.log(`${els.length} slides (max ${MAX_SLIDES}) → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
+if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg, so the cover uses the plain navy background.");
