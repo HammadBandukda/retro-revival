@@ -17,7 +17,8 @@ One repo for Retro Revival. Shared material sits at the top level, and each work
 │   │   ├── business-profile.md    # Company facts, products, brand
 │   │   ├── online-presence.md     # Instagram, Facebook, other channels
 │   │   ├── reel-analysis.md       # Breakdown of the warehouse location reel
-│   │   └── competitors.md         # ZewGrags72, Wing999, Retro Vintage, SPS
+│   │   ├── competitors.md         # ZewGrags72, Wing999, Retro Vintage, SPS
+│   │   └── claude-skills.md       # Public Claude skills worth installing
 │   ├── strategy/
 │   │   ├── assessment.md          # Strengths and weaknesses
 │   │   ├── brand-direction.md     # Positioning, personality, audience
