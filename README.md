@@ -41,7 +41,7 @@ Each project folder has its own `README.md` with its status, brief, and layout.
 
 | Project | Status | Start here |
 | :- | :- | :- |
-| Stock Drop carousel | Template v1 built; waiting on spreadsheet and photo | [projects/stock-drop](projects/stock-drop/README.md) |
+| Stock Drop carousel | October 2026 built; waiting on warehouse photo | [projects/stock-drop](projects/stock-drop/README.md) |
 | Website | Draft scope, not confirmed | [projects/website](projects/website/README.md) |
 | Social content | Not started | [projects/social](projects/social/README.md) |
 

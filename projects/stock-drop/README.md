@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** template v1 built and previewed on sample data ([overview](output/sample/overview.png)). Still waiting on the inventory spreadsheet (`ETA141026.xlsx`), the warehouse photo, and the layout reference.
+**Status:** October 2026 built from the client's sheet: 14 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Waiting on the warehouse photo for the cover and contact slides.
 
 ## Brief
 
@@ -29,40 +29,49 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 
 ## Monthly workflow
 
-1. Export the month's inventory to CSV and save it as `data/YYYY-MM.csv` (for example `data/2026-10.csv`). The month on the slides comes from the file name.
+1. Save the client's inventory sheet as `data/YYYY-MM.xlsx` (for example `data/2026-11.xlsx`). The month on the slides comes from the file name. A `.csv` export works too.
 2. Run the build:
    ```
    npm install            # first time only
-   npm run build -- data/2026-10.csv
+   npm run build -- data/2026-11.xlsx
    ```
-3. Check `output/2026-10/overview.png`, then post `01.png` onward in order.
+3. Check `output/2026-11/overview.png`, then post `01.png` onward in order.
 
-### CSV format
+### Sheet format
 
-| Column | Required | Example |
+The build reads the client's own layout. Columns are matched by header name, so their order doesn't matter.
+
+| Header in the sheet | Used for | Required |
 | :- | :- | :- |
-| `section` | Yes | `Outerwear` |
-| `category` | Yes | `Carhartt Jackets` |
-| `quantity` | Yes | `12` |
-| `unit` | No | `bales` |
+| `Description` | Bale name | Yes |
+| `Quantity` | Bales available | Yes |
+| `Section` | Grouping on the slides | Yes |
+| `Packing On Bale` | Packing column (for example `200 PCS`, `100 LBS`) | No |
+| `Bales` | Unit label in the column header | No |
 
-- Rows print exactly as written, in the same order. Sections appear in the order they first show up.
-- The final column layout depends on the real spreadsheet. Adjust this format once it arrives.
+- Descriptions, sections, packing, and quantities print exactly as written, in sheet order. Sections appear in the order they first show up. The only change is display spacing: `200Pcs` shows as `200 PCS`.
+- A totals row (a quantity with no description or section) is checked against the sum of the lines. The build stops if they don't match.
 
 ### Built-in safeguards
 
-- **Sample data:** `data/sample.csv` is made up, for layout testing only. Every slide built from it carries a red **SAMPLE DATA — NOT FOR POSTING** banner.
+- **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide limit:** the build stops if the carousel goes over Instagram's limit of 20 slides.
 - **No photo yet:** if `assets/photos/warehouse.jpg` is missing, the cover and contact slides use a labelled placeholder.
+
+### Data on file
+
+| Month | File | Source | Lines | Bales |
+| :- | :- | :- | :- | :- |
+| October 2026 | `data/2026-10.csv` | `ETA141026.xlsx` (Google Drive), rebuilt as CSV and checked line by line against the sheet's total | 80 | 641 |
 
 ## Slides
 
 | # | Slide | Content |
 | :- | :- | :- |
 | 1 | Cover | Warehouse photo, logo, "Stock Drop", month |
-| 2 | Index | Sections, category counts, page numbers |
-| 3+ | Inventory | Sections and categories with quantities. Long sections continue on the next slide |
+| 2 | Index | Total bales, bale types, and sections, plus a two-column section index with page numbers |
+| 3+ | Inventory | Table of description, packing, and bales. Sections flow across slides, with at least 2 lines on each side of a split |
 | n-1 | Why Retro Revival | Four confirmed facts: monthly containers, sorted bales, Bangkok location, registered company |
 | n | Contact | WhatsApp, LINE, address, Instagram |
 
@@ -79,7 +88,7 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 
 ```
 stock-drop/
-├── data/        # one inventory CSV per month, plus sample.csv
+├── data/        # one inventory sheet per month (.xlsx or .csv)
 ├── src/         # build script and contact details
 ├── template/    # styles and fonts
 └── output/      # built slides, one folder per month
