@@ -4,6 +4,7 @@ Answers and decisions confirmed by the client or Hammad. Add new entries at the 
 
 | Date | Decision | Source | Docs updated |
 | :- | :- | :- | :- |
+| 2026-10-10 | Cover B chosen: logo top left (enlarged), gold line drawing of bales top right, "Stock Drop" on one line. A/B record in `projects/stock-drop/reviews/2026-10-cover-ab/` | Hammad | projects/stock-drop |
 | 2026-10-10 | List rows use soft containers instead of rules and dotted leaders | Hammad | projects/stock-drop |
 | 2026-10-10 | The logo appears on the carousel cover only. List-slide footers carry WhatsApp, LINE, and Instagram | Hammad | projects/stock-drop |
 | 2026-10-10 | The sheet's section "3 button" shows on the slides as "Collar T-shirts (3 buttons)" | Hammad | projects/stock-drop/src/corrections.mjs |

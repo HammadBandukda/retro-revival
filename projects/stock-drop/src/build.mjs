@@ -1,7 +1,7 @@
 // Builds the monthly Stock Drop carousel from the client's inventory sheet.
 //
 //   npm run build -- data/2026-10.xlsx   (or .csv)   -> output/2026-10/*.png
-//   add --cover-art for the line drawing of bales on the cover
+//   add --no-cover-art to leave the line drawing of bales off the cover
 //
 // The sheet is the only source of truth: descriptions, packing, and quantities
 // are printed exactly as written (surrounding spaces trimmed), in sheet order.
@@ -252,7 +252,7 @@ function buildSlides(inv, { month, year }, assets) {
 
 const args = process.argv.slice(2);
 const fileArg = args.find((a) => !a.startsWith("--"));
-const coverArt = args.includes("--cover-art"); // A/B option: line drawing of bales on the cover
+const coverArt = !args.includes("--no-cover-art"); // line drawing of bales on the cover (on by default)
 if (!fileArg) fail("usage: npm run build -- data/2026-10.xlsx");
 const file = resolve(process.cwd(), fileArg);
 if (!existsSync(file)) fail(`can't find ${file}`);
