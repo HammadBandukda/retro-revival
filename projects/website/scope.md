@@ -1,6 +1,6 @@
 # Website Scope (Draft)
 
-**Status:** pending client confirmation. Do not build until the deliverable is confirmed (see [open questions](../client/open-questions.md)).
+**Status:** pending client confirmation. Do not build until the deliverable is confirmed (see [open questions](../../docs/client/open-questions.md)).
 
 ## Goal
 
@@ -21,7 +21,7 @@ In 30 seconds, an overseas buyer should see a legit exporter instead of a random
 
 ## Requirements
 
-- **Bilingual EN/TH**, for the two audiences (see [reel analysis](../research/reel-analysis.md#insight-two-audiences-one-feed))
+- **Bilingual EN/TH**, for the two audiences (see [reel analysis](../../docs/research/reel-analysis.md#insight-two-audiences-one-feed))
 - Mobile-first, because buyers arrive from IG and WhatsApp
 - A floating WhatsApp button on every page
 - A CMS-driven catalog and stock list, so the client can update them weekly without a developer

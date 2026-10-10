@@ -37,4 +37,4 @@ Machine-transcribed from Thai and translated. It covers the first ~16 seconds; t
 1. **Local Thai resellers** (IG and TikTok sellers, market stalls): Thai-language content, walk-in visits
 2. **International wholesale buyers**: English-language content, export, container shipping
 
-This split drives the content plan in the [roadmap](../strategy/roadmap.md) and the bilingual requirement in the [website scope](../website/scope.md).
+This split drives the content plan in the [roadmap](../strategy/roadmap.md) and the bilingual requirement in the [website scope](../../projects/website/scope.md).

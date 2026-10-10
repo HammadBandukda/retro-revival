@@ -9,16 +9,16 @@ Recommended next steps, in priority order.
 - [ ] Add WhatsApp, LINE, address, and hours everywhere
 - [ ] Ask past buyers for Google reviews
 
-## 2. Weekly stock list
+## 2. Stock list
 
-- [ ] Design a branded "Ready to Ship" bale list graphic (category, piece count, optional "from" price)
-- [ ] Post it weekly on IG, FB, and WhatsApp broadcast. This is the core sales tool in the niche
+- [ ] Design a branded stock list graphic (category, piece count, optional "from" price). The client has chosen a **monthly "Stock Drop" carousel** (see [decisions](../client/decisions.md))
+- [ ] Post it on IG, FB, and WhatsApp broadcast. This is the core sales tool in the niche
 
-Store each list in `content/stock-lists/`.
+Built in [projects/stock-drop](../../projects/stock-drop/README.md).
 
 ## 3. Website
 
-The biggest single upgrade, and likely Hammad's deliverable. See the [website scope](../website/scope.md).
+The biggest single upgrade, and likely Hammad's deliverable. See the [website scope](../../projects/website/scope.md).
 
 ## 4. Split content by audience
 

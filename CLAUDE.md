@@ -6,7 +6,7 @@ Context for Claude Code sessions on this project. Read this first, then the docs
 
 - **Hammad** is a web developer, designer, and video producer based in Karachi. He works mainly in **Webflow**, plus UI/UX, video, and content strategy. He speaks English and Urdu/Hindi.
 - **How he wants answers:** short and useful. No sugarcoating, no padding.
-- **Assignment so far:** "study the business." The end deliverable has **not been confirmed**. Ask before building anything large.
+- **Assignment so far:** the first confirmed deliverable is the monthly Stock Drop carousel. Anything beyond that is unconfirmed, so ask before building anything large.
 
 ## The project in one paragraph
 
@@ -21,8 +21,10 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 | Warehouse reel breakdown | [docs/research/reel-analysis.md](docs/research/reel-analysis.md) |
 | Competitors | [docs/research/competitors.md](docs/research/competitors.md) |
 | Strengths and weaknesses | [docs/strategy/assessment.md](docs/strategy/assessment.md) |
+| Brand positioning, personality, audience | [docs/strategy/brand-direction.md](docs/strategy/brand-direction.md) |
 | Recommended next steps | [docs/strategy/roadmap.md](docs/strategy/roadmap.md) |
-| Website scope draft | [docs/website/scope.md](docs/website/scope.md) |
+| Stock Drop carousel | [projects/stock-drop/README.md](projects/stock-drop/README.md) |
+| Website scope draft | [projects/website/scope.md](projects/website/scope.md) |
 | Questions for the client | [docs/client/open-questions.md](docs/client/open-questions.md) |
 | Confirmed decisions | [docs/client/decisions.md](docs/client/decisions.md) |
 
@@ -32,5 +34,6 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 - Treat every **[unverified]** item as an assumption until it is confirmed. When the client confirms something, record it in `docs/client/decisions.md` and update the source doc.
 - Instagram and Facebook block automated access. Hammad must supply screenshots or exports for any new social research. Store them in `assets/screenshots/`.
 - **Platform:** Webflow is the default for the website. Confirm with Hammad before scaffolding any code-based alternative.
+- **Repo layout:** one repo for Retro Revival. Shared material goes in `docs/` and `assets/`, and each workstream gets its own folder under `projects/`. Put new work in the matching project folder, or create a new one with its own `README.md`.
 - Keep each fact in one doc and link to it instead of copying it (see conventions in [README.md](README.md)).
 - Keep updates to Hammad short and direct.
