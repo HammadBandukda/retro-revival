@@ -4,6 +4,7 @@ Answers and decisions confirmed by the client or Hammad. Add new entries at the 
 
 | Date | Decision | Source | Docs updated |
 | :- | :- | :- | :- |
+| 2026-10-10 | The sheet's section "3 button" shows on the slides as "Collar T-shirts (3 buttons)" | Hammad | projects/stock-drop/src/corrections.mjs |
 | 2026-10-10 | No warehouse photo exists. The carousel cover uses the brand navy background as its final design | Hammad | projects/stock-drop, brand-direction.md |
 | 2026-10-10 | Fix certain brand misspellings from the sheet at build time: Carhart → Carhartt, Levis → Levi's, lee/wrangler → Lee/Wrangler, Harley Davidson → Harley-Davidson, Nascar → NASCAR. Wording and trade terms stay as the client wrote them | Hammad | projects/stock-drop/src/corrections.mjs |
 | 2026-10-10 | A section is never split across slides. Sections may be rearranged to fit, and the emptiest slide always goes last. Numerals use lining figures (no dropped 3s) | Hammad | projects/stock-drop |

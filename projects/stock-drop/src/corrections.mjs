@@ -12,6 +12,15 @@ export const CORRECTIONS = [
   { find: /\bNascar\b/g, replace: "NASCAR" },
 ];
 
+// Section names as buyers should see them, keyed by the exact name in the sheet.
+export const SECTION_NAMES = {
+  "3 button": "Collar T-shirts (3 buttons)", // Hammad, 2026-10-10
+};
+
 export function correct(text) {
   return CORRECTIONS.reduce((t, c) => t.replace(c.find, c.replace), text);
+}
+
+export function correctSection(name) {
+  return SECTION_NAMES[name] ?? correct(name);
 }

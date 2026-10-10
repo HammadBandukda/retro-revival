@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 import ExcelJS from "exceljs";
 import { chromium } from "playwright";
 import { CONTACT } from "./brand.mjs";
-import { correct } from "./corrections.mjs";
+import { correct, correctSection } from "./corrections.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(ROOT, "../..");
@@ -117,7 +117,7 @@ async function loadInventory(file) {
     if (!item.section) fail(`line ${line} (${item.category}) has no section`);
     if (!/^\d+$/.test(item.quantity)) fail(`line ${line} (${item.category}) has quantity "${item.quantity}", expected a whole number`);
     for (const key of ["category", "section"]) {
-      const fixed = correct(item[key]);
+      const fixed = key === "section" ? correctSection(item[key]) : correct(item[key]);
       if (fixed !== item[key]) corrected.push(`${item[key]} → ${fixed}`);
       item[key] = fixed;
     }
@@ -302,4 +302,4 @@ rmSync(overviewPath);
 await browser.close();
 
 console.log(`${els.length} slides (max ${MAX_SLIDES}) → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
-if (inventory.corrected.length) console.log(`Spelling fixes (src/corrections.mjs):\n  ${[...new Set(inventory.corrected)].join("\n  ")}`);
+if (inventory.corrected.length) console.log(`Fixes (src/corrections.mjs):\n  ${[...new Set(inventory.corrected)].join("\n  ")}`);

@@ -22,7 +22,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 
 | Input | Rule |
 | :- | :- |
-| Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities. The one exception is approved brand-spelling fixes in `src/corrections.mjs` |
+| Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities. The exceptions are approved brand-spelling fixes and section names in `src/corrections.mjs` |
 | Logo | Official. Use the file as is. Never redraw it |
 | Warehouse photo | None exists. The cover uses the brand navy background by design. If a real photo ever turns up, save it as `assets/photos/warehouse.jpg` and rebuild |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
@@ -51,6 +51,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 - Descriptions, sections, packing, and quantities print as written. Two exceptions:
   - **Spelling fixes:** brand names that are certainly misspelled are corrected at build time from `src/corrections.mjs` (for example Carhart → Carhartt, Levis → Levi's). The sheet itself is never edited, and the build lists every fix it makes. Add only certain fixes, never wording changes.
+  - **Section names:** the same file renames sections Hammad has approved (for example "3 button" → "Collar T-shirts (3 buttons)").
   - **Spacing:** `200Pcs` shows as `200 PCS`.
 - A totals row (a quantity with no description or section) is checked against the sum of the lines. The build stops if they don't match.
 
