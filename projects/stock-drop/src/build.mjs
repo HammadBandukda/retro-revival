@@ -221,11 +221,10 @@ function buildSlides(inv, { month, year }, assets) {
     <div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>${assets.coverArt ? `
     <div class="cover-art">${assets.coverArt}</div>` : ""}
     <div class="cover-text">
-      <div class="eyebrow">Monthly wholesale release</div>
       <h1>Stock Drop</h1>
       <div class="month">${esc(label)}</div>
-      <div class="rule"></div>
-      <div class="pillars">Fresh containers every month, sorted into categorized bales<br>Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
+      <div class="pills">${inv.sections.map((x) => `<span>${esc(x.name)}</span>`).join("")}</div>
+      <div class="pillars">Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
       <div class="cover-contacts"><span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span><span><b>LINE</b>${esc(CONTACT.line)}</span></div>
     </div>
     <div class="swipe">SWIPE<span>→</span></div>
@@ -234,11 +233,11 @@ function buildSlides(inv, { month, year }, assets) {
   pages.forEach((p) => {
     slides.push(`
   <section class="slide">
-    <div class="body" style="--row:${row}px">${p.blocks.map((b) => `
+    <div class="body" style="--row:${row}px">${p.blocks.map((b, bi) => `
       <div class="block">
-        <div class="section-head"><h2>${esc(b.section.name)}</h2><span class="qt">${esc(unitWord)}</span></div>
+        <div class="section-head"><h2>${esc(b.section.name)}</h2>${bi === 0 ? `<span class="qt">${esc(unitWord)}</span>` : ""}</div>
         <ul class="rows">${b.rows.map((r) => `
-          <li><span class="cat">${esc(r.category)}</span><span class="pk">${esc(packingLabel(r.packing))}</span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
+          <li><span class="item"><span class="cat">${esc(r.category)}</span><span class="pk">${esc(packingLabel(r.packing))}</span></span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
         </ul>
       </div>`).join("")}
     </div>${footer}
@@ -289,6 +288,12 @@ const clipped = await page.$$eval(".slide", (slides) =>
     ...[...s.querySelectorAll(".body")].filter((el) => el.scrollHeight > el.clientHeight + 1),
     ...[...s.querySelectorAll(".rows .cat, .rows .pk, .section-head h2, .cover-text h1")].filter((el) => el.scrollWidth > el.clientWidth + 1),
   ].map(() => i + 1)));
+const coverClash = await page.$eval(".slide", (c) => {
+  const top = c.querySelector(".cover-text").getBoundingClientRect().top;
+  const marks = [...c.querySelectorAll(".plate, .cover-art")].map((el) => el.getBoundingClientRect().bottom);
+  return top < Math.max(...marks) + 24;
+});
+if (coverClash) fail("the cover text runs into the logo or drawing. Shorten the section names or adjust the cover layout");
 if (clipped.length) fail(`text is cut off on slide ${[...new Set(clipped)].join(", ")}. Adjust the layout in build.mjs and styles.css`);
 
 const els = await page.$$(".slide");

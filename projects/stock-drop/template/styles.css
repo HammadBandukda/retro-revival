@@ -29,6 +29,7 @@
   --cream: #f7f6f4;       /* logo background */
   --paper: #eeeae3;       /* list-slide background, a shade deeper than cream */
   --card: #fbfaf8;        /* list-row container */
+  --qty-box: #efe3c6;     /* bale-number box, a light gold tint */
   --rule: rgba(28, 44, 60, 0.16);
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", Helvetica, Arial, sans-serif;
@@ -93,7 +94,6 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 
 /* Cover */
 .cover-text { position: absolute; left: 80px; right: 80px; bottom: 120px; }
-.cover-text .eyebrow { color: var(--gold-light); }
 .cover-text h1 {
   margin-top: 30px; font: 600 180px/0.9 var(--serif); font-variant-numeric: lining-nums;
   letter-spacing: -0.01em; color: var(--cream); white-space: nowrap; overflow: hidden;
@@ -101,10 +101,12 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .cover-text .month {
   margin-top: 48px; font: italic 500 84px/1 var(--serif); font-variant-numeric: lining-nums; color: var(--gold-light);
 }
-.cover-text .rule { width: 120px; height: 2px; background: var(--gold); margin: 44px 0 30px; }
-.cover-text .pillars {
-  font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82);
+.cover-text .pills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
+.cover-text .pills span {
+  padding: 11px 18px; border-radius: 999px; background: rgba(247, 246, 244, 0.09);
+  font: 500 21px/1 var(--sans); color: var(--cream); white-space: nowrap;
 }
+.cover-text .pillars { margin-top: 36px; font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82); }
 /* Line drawing of bales, top right, opposite the logo (--no-cover-art turns it off). */
 .cover-art { position: absolute; right: 56px; top: 96px; width: 440px; color: var(--gold-light); opacity: 0.9; }
 .cover-art svg { display: block; width: 100%; height: auto; }
@@ -124,24 +126,30 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .block + .block { margin-top: 26px; }
 .section-head {
   display: flex; align-items: flex-end; gap: 20px;
-  height: 76px; padding: 0 22px 14px;
+  height: 76px; padding: 0 0 14px 22px;
 }
 .section-head h2 { margin: 0; font: 600 54px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; }
 .section-head .qt {
-  margin-left: auto; padding-bottom: 6px; font: 600 14px/1 var(--sans); letter-spacing: 0.24em;
-  text-transform: uppercase; color: rgba(28,44,60,0.5);
+  margin-left: auto; padding-bottom: 6px; font: 600 15px/1 var(--sans); letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold-dark); text-align: center;
 }
 
-/* Columns: description · packing · quantity */
-.rows .pk { width: 150px; text-align: right; }
-.section-head .qt, .rows .qty { width: 96px; text-align: right; }
+/* Row: [ name · packing ] [ bales ]. One "BALES" label per slide sits above the box column. */
+.section-head .qt, .rows .qty { width: 104px; }
 
 .rows li {
+  list-style: none; display: flex; gap: 8px;
+  height: calc(var(--row) - 6px); margin-bottom: 6px;
+}
+.rows .item {
   /* Each line sits in a soft container; the gap between containers replaces rules. */
-  list-style: none; display: flex; align-items: center; gap: 16px;
-  height: calc(var(--row) - 6px); margin-bottom: 6px; padding: 0 22px;
-  background: var(--card); border-radius: 12px;
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 16px;
+  padding: 0 22px; background: var(--card); border-radius: 12px;
 }
 .rows .cat { flex: 1; min-width: 0; font: 500 calc(var(--row) * 0.44)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
 .rows .pk { flex: none; font: 600 17px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
-.rows .qty { flex: none; font: 600 calc(var(--row) * 0.5)/1 var(--sans); font-variant-numeric: tabular-nums; }
+.rows .qty {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  background: var(--qty-box); border-radius: 12px;
+  font: 600 calc(var(--row) * 0.5)/1 var(--sans); font-variant-numeric: tabular-nums;
+}

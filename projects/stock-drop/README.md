@@ -77,8 +77,8 @@ Less is more: **7 slides at most**, the cover and the list. Nothing else.
 
 | # | Slide | Content |
 | :- | :- | :- |
-| 1 | Cover | Logo top left, line drawing of bales top right, "Stock Drop" on one line, month, location, WhatsApp and LINE |
-| 2–7 | List | Section name, then one line per bale: description, packing, bales. **A section is never split across slides** |
+| 1 | Cover | Logo top left, line drawing of bales top right, "Stock Drop" on one line, month, every section as a pill, location, WhatsApp and LINE |
+| 2–7 | List | Section name, then one row per bale: a container with the description and packing, and a separate box with the number of bales. One "BALES" label per slide sits above the boxes. **A section is never split across slides** |
 
 - List slides carry only the list, plus a footer with WhatsApp, LINE, and Instagram. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
@@ -89,7 +89,8 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 
 ## Design system
 
-- **List rows:** each bale line sits in a soft, near-white container on a warm cream slide. No rules or dotted leaders: the containers guide the eye.
+- **List rows:** each bale line sits in a soft, near-white container on a warm cream slide, with the bale count in a light gold box beside it. No rules or dotted leaders: the containers guide the eye.
+- **Cover pills:** the build checks that the pills never run into the logo or the drawing.
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
 - **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
 - **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only. It sits on an off-white plate because the file has no transparent background.

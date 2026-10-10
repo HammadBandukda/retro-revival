@@ -12,7 +12,6 @@ Project: [projects/stock-drop](../projects/stock-drop/README.md)
 
 From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html):
 
-- [ ] **[Hammad]** "BALES" label: show it once per slide instead of on every section
 - [ ] **[Hammad]** Review the caption: [captions/2026-10.md](../projects/stock-drop/captions/2026-10.md)
 - [ ] **[Hammad]** Decide on text size: list lines are about 24px to fit 7 slides, below the roughly 28pt guideline. Options: keep it, allow 8–9 slides, or split the drop into two posts ([skills review](../docs/research/claude-skills.md#whats-useful-now))
 - [ ] **[Hammad]** Upload the original `ETA141026.xlsx` to `projects/stock-drop/data/` on GitHub. The file on record is a CSV rebuilt from the sheet's text
