@@ -24,6 +24,8 @@ const SECTION_GAP = 26;
 // Row heights to try, most readable first. The build uses the first one that fits the cap.
 const ROW_HEIGHTS = [80, 76, 72, 68, 64, 60];
 const MIN_ROW = 50; // floor for a section so long it fills a slide on its own (e.g. Jeans)
+const TWO_COL_MAX_ROW = 104; // two-column rows are taller: name above packing
+const ONE_COL_MIN_ROW = 66; // below this, a long section switches to two columns
 const MAX_SLIDES = 9; // cover + list slides
 
 // Sheet headers we read, matched case-insensitively. First match wins.
@@ -167,7 +169,8 @@ const packingLabel = (p) => p.replace(/^(\d+)\s*/, "$1 ");
 
 // Sections are never split across slides. They are packed onto slides largest first
 // (first-fit decreasing) at the target row height. A section too long for one slide at
-// that height gets a slide to itself, with its rows shrunk to fit (down to MIN_ROW).
+// that height gets a slide to itself: one column if rows stay near full size, else two
+// columns with taller rows (name above packing).
 // Each slide lists its sections in sheet order; slides run in the order of their first
 // section in the sheet, except the emptiest slide, which always goes last.
 function paginate(sections, rowHeight) {
@@ -177,9 +180,16 @@ function paginate(sections, rowHeight) {
   for (const entry of order) {
     const h = height(entry.s);
     if (h > BODY_HEIGHT) {
-      const row = Math.floor((BODY_HEIGHT - HEAD_HEIGHT) / entry.s.items.length);
+      // Keep one column if its rows stay close to full size; otherwise use two columns.
+      const oneCol = Math.floor((BODY_HEIGHT - HEAD_HEIGHT) / entry.s.items.length);
+      if (oneCol >= ONE_COL_MIN_ROW) {
+        pages.push({ entries: [entry], used: BODY_HEIGHT, row: oneCol, solo: true });
+        continue;
+      }
+      const perColumn = Math.ceil(entry.s.items.length / 2);
+      const row = Math.min(TWO_COL_MAX_ROW, Math.floor((BODY_HEIGHT - HEAD_HEIGHT) / perColumn));
       if (row < MIN_ROW) return null;
-      pages.push({ entries: [entry], used: BODY_HEIGHT, row, solo: true });
+      pages.push({ entries: [entry], used: BODY_HEIGHT, row, solo: true, twoCol: true });
       continue;
     }
     const page = pages.find((p) => !p.solo && p.used + SECTION_GAP + h <= BODY_HEIGHT);
@@ -192,7 +202,7 @@ function paginate(sections, rowHeight) {
   // The emptiest slide goes last, so the carousel doesn't look finished early.
   const emptiest = ordered.reduce((m, p, i) => (p.used < ordered[m].used ? i : m), 0);
   ordered.push(...ordered.splice(emptiest, 1));
-  return ordered.map((p) => ({ row: p.row, fill: p.used / BODY_HEIGHT, blocks: p.entries.map(({ s }) => ({ section: s, rows: s.items })) }));
+  return ordered.map((p) => ({ row: p.row, fill: p.used / BODY_HEIGHT, blocks: p.entries.map(({ s }) => ({ section: s, rows: s.items, twoCol: !!p.twoCol })) }));
 }
 
 // Use the biggest row height that fits the cap, unless it leaves a slide less than half
@@ -243,8 +253,8 @@ function buildSlides(inv, { month, year }, assets) {
   <section class="slide">
     <div class="body" style="--row:${p.row}px">${p.blocks.map((b, bi) => `
       <div class="block">
-        <div class="section-head"><h2>${esc(b.section.name)}</h2>${bi === 0 ? `<span class="qt">${esc(unitWord)}</span>` : ""}</div>
-        <ul class="rows">${b.rows.map((r) => `
+        <div class="section-head${b.twoCol ? " two" : ""}"><h2>${esc(b.section.name)}</h2>${bi === 0 ? `<span class="qt">${esc(unitWord)}</span>` : ""}</div>
+        <ul class="rows${b.twoCol ? " two" : ""}" style="--n:${Math.ceil(b.rows.length / 2)}">${b.rows.map((r) => `
           <li><span class="item"><span class="cat">${esc(r.category)}</span><span class="pk">${esc(packingLabel(r.packing))}</span></span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
         </ul>
       </div>`).join("")}
@@ -293,7 +303,7 @@ await page.evaluate(() => document.fonts.ready);
 // Guard: never post a slide with clipped text.
 const clipped = await page.$$eval(".slide", (slides) =>
   slides.flatMap((s, i) => [
-    ...[...s.querySelectorAll(".body")].filter((el) => el.scrollHeight > el.clientHeight + 1),
+    ...[...s.querySelectorAll(".body, .rows.two .cat, .rows.two .item")].filter((el) => el.scrollHeight > el.clientHeight + 1),
     ...[...s.querySelectorAll(".rows .cat, .rows .pk, .section-head h2, .cover-text h1")].filter((el) => el.scrollWidth > el.clientWidth + 1),
   ].map(() => i + 1)));
 const coverClash = await page.$eval(".slide", (c) => {

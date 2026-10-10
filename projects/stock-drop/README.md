@@ -84,7 +84,7 @@ Less is more: **9 slides at most** (cover plus up to 8 list slides), built mobil
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
 - **Emptiest slide last:** the slide with the most free space always goes at the end, so the carousel never looks finished early.
 - **Auto-fit:** the build tries row heights from 80px down to 60px and uses the biggest where every section fits whole within 9 slides and no slide is less than half full. Bale names are capped at 32px so long names never cut off.
-- **Long sections:** a section too long for one slide at that size (October: Jeans, 19 lines) gets a slide to itself with tighter rows (down to 50px), so it never splits. If a section can't fit even then, the build stops and names it. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
+- **Long sections:** a section too long for one slide at that size gets a slide to itself, so it never splits. If one column still gives near-full-size rows (66px or more), it stays one column (October: Printed T-shirts). Otherwise it switches to two columns, with the name above its packing and long names wrapping to two lines (October: Jeans, 19 lines). If a section can't fit even then, the build stops and names it. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
 
