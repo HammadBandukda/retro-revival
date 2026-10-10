@@ -56,7 +56,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
-- **Slide cap:** the build stops if the list can't fit in 7 slides.
+- **Slide cap:** the build stops if every section can't fit whole within 7 slides.
 - **No photo:** if `assets/photos/warehouse.jpg` is missing, the cover uses a plain navy background. Add the file and rebuild to switch to the photo.
 
 ### Data on file
@@ -72,17 +72,18 @@ Less is more: **7 slides at most**, the cover and the list. Nothing else.
 | # | Slide | Content |
 | :- | :- | :- |
 | 1 | Cover | Logo, "Stock Drop", month, location, WhatsApp and LINE |
-| 2–7 | List | Section name, then one line per bale: description, packing, bales. Sections flow across slides, with at least 2 lines on each side of a split |
+| 2–7 | List | Section name, then one line per bale: description, packing, bales. **A section is never split across slides** |
 
 - List slides carry only the list, plus a footer with the logo, WhatsApp, LINE, and Instagram. No index, totals, page numbers, or section numbers.
-- **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first that fits in 7 slides. If a month's sheet is too long even at 54px, the build stops and says so. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
+- **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
+- **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first where every section fits whole within 7 slides. If a month's sheet can't fit even at 54px, the build stops and names the largest section. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
 
 ## Design system
 
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
-- **Type:** Cormorant Garamond for headings and numbers, Inter for everything else. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
+- **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
 - **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only. It sits on an off-white plate because the file has no transparent background.
 - **Format:** 1080 × 1350 px (Instagram 4:5).
 

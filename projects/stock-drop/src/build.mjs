@@ -156,38 +156,33 @@ const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 // Display-only spacing fix for packing such as "200Pcs" -> "200 Pcs". The words are not changed.
 const packingLabel = (p) => p.replace(/^(\d+)\s*/, "$1 ");
 
+// Sections are never split across slides. They are packed onto slides largest first
+// (first-fit decreasing), then each slide lists its sections in sheet order, and the
+// slides run in the order of their first section in the sheet.
 function paginate(sections, rowHeight) {
-  // Flow sections down the slides like a catalogue. A section that doesn't fit is split,
-  // carrying at least 2 lines on each side so no line is stranded on its own.
-  const MIN_ROWS = 2;
+  const height = (s) => HEAD_HEIGHT + s.items.length * rowHeight;
+  if (sections.some((s) => height(s) > BODY_HEIGHT)) return null;
+  const order = sections.map((s, i) => ({ s, i })).sort((a, b) => height(b.s) - height(a.s));
   const pages = [];
-  let page = null, used = 0;
-  const newPage = () => { pages.push((page = { blocks: [] })); used = 0; };
-  newPage();
-  sections.forEach((s) => {
-    let i = 0;
-    while (i < s.items.length) {
-      const left = s.items.length - i;
-      const gap = page.blocks.length ? SECTION_GAP : 0;
-      let fit = Math.floor((BODY_HEIGHT - used - gap - HEAD_HEIGHT) / rowHeight);
-      if (fit < left && left - fit < MIN_ROWS) fit = left - MIN_ROWS; // leave 2+ for the next slide
-      if (fit < Math.min(MIN_ROWS, left)) { newPage(); continue; }
-      const rows = s.items.slice(i, i + Math.min(fit, left));
-      page.blocks.push({ section: s, rows });
-      used += gap + HEAD_HEIGHT + rows.length * rowHeight;
-      i += rows.length;
-    }
-  });
-  return pages;
+  for (const entry of order) {
+    const page = pages.find((p) => p.used + SECTION_GAP + height(entry.s) <= BODY_HEIGHT);
+    if (page) { page.entries.push(entry); page.used += SECTION_GAP + height(entry.s); }
+    else pages.push({ entries: [entry], used: height(entry.s) });
+  }
+  return pages
+    .map((p) => p.entries.sort((a, b) => a.i - b.i))
+    .sort((a, b) => a[0].i - b[0].i)
+    .map((entries) => ({ blocks: entries.map(({ s }) => ({ section: s, rows: s.items })) }));
 }
 
 function fitPages(sections) {
   for (const row of ROW_HEIGHTS) {
     const pages = paginate(sections, row);
-    if (pages.length + 1 <= MAX_SLIDES) return { pages, row };
+    if (pages && pages.length + 1 <= MAX_SLIDES) return { pages, row };
   }
-  const smallest = ROW_HEIGHTS.at(-1);
-  fail(`the list needs ${paginate(sections, smallest).length + 1} slides even at the smallest row size, over the cap of ${MAX_SLIDES}. Raise MAX_SLIDES in build.mjs`);
+  const biggest = sections.reduce((a, b) => (b.items.length > a.items.length ? b : a));
+  fail(`can't fit every section whole within ${MAX_SLIDES} slides, even at the smallest row size. ` +
+    `The largest section is "${biggest.name}" (${biggest.items.length} lines). Raise MAX_SLIDES in build.mjs, or split the post`);
 }
 
 function buildSlides(inv, { month, year }, assets) {
