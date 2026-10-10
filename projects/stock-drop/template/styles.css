@@ -27,6 +27,8 @@
   --gold-light: #d2ad66;  /* gold for text on navy */
   --gold-dark: #8a6420;   /* gold for small text on cream */
   --cream: #f7f6f4;       /* logo background */
+  --paper: #eeeae3;       /* list-slide background, a shade deeper than cream */
+  --card: #fbfaf8;        /* list-row container */
   --rule: rgba(28, 44, 60, 0.16);
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", Helvetica, Arial, sans-serif;
@@ -40,7 +42,7 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   width: 1080px;
   height: 1350px;
   overflow: hidden;
-  background: var(--cream);
+  background: var(--paper);
   margin: 0 auto 40px;
 }
 .slide.dark { background: var(--navy-deep); color: var(--cream); }
@@ -55,7 +57,7 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 
 .footer {
   position: absolute; left: 72px; right: 72px; bottom: 44px; height: 92px;
-  padding-top: 20px; border-top: 1px solid var(--rule);
+  padding-top: 20px;
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
 .footer .contacts { flex: 1; display: flex; justify-content: space-between; gap: 34px; font: 500 21px/1 var(--sans); letter-spacing: 0.02em; }
@@ -103,6 +105,9 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .cover-text .pillars {
   font: 400 25px/1.5 var(--sans); color: rgba(247, 246, 244, 0.82);
 }
+/* Optional line drawing of bales (--cover-art), right of the title. */
+.cover-art { position: absolute; right: 60px; top: 560px; width: 440px; color: var(--gold-light); opacity: 0.9; }
+.cover-art svg { display: block; width: 100%; height: auto; }
 .cover-contacts { margin-top: 30px; display: flex; gap: 40px; font: 600 26px/1 var(--sans); color: var(--cream); }
 .cover-contacts b { color: var(--gold-light); }
 .swipe {
@@ -119,7 +124,7 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .block + .block { margin-top: 26px; }
 .section-head {
   display: flex; align-items: flex-end; gap: 20px;
-  height: 76px; padding-bottom: 12px; border-bottom: 2px solid var(--navy);
+  height: 76px; padding: 0 22px 14px;
 }
 .section-head h2 { margin: 0; font: 600 54px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; }
 .section-head .qt {
@@ -127,15 +132,16 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   text-transform: uppercase; color: rgba(28,44,60,0.5);
 }
 
-/* Columns: description · leader · packing · quantity */
+/* Columns: description · packing · quantity */
 .rows .pk { width: 150px; text-align: right; }
 .section-head .qt, .rows .qty { width: 96px; text-align: right; }
 
 .rows li {
+  /* Each line sits in a soft container; the gap between containers replaces rules. */
   list-style: none; display: flex; align-items: center; gap: 16px;
-  height: var(--row); border-bottom: 1px solid var(--rule);
+  height: calc(var(--row) - 6px); margin-bottom: 6px; padding: 0 22px;
+  background: var(--card); border-radius: 12px;
 }
-.rows .cat { min-width: 0; font: 500 calc(var(--row) * 0.44)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
-.rows .leader { flex: 1; min-width: 24px; align-self: center; border-bottom: 2px dotted rgba(28,44,60,0.22); transform: translateY(6px); }
+.rows .cat { flex: 1; min-width: 0; font: 500 calc(var(--row) * 0.44)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
 .rows .pk { flex: none; font: 600 17px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
 .rows .qty { flex: none; font: 600 calc(var(--row) * 0.5)/1 var(--sans); font-variant-numeric: tabular-nums; }

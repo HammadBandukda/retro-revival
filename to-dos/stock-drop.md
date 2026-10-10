@@ -10,6 +10,7 @@ Project: [projects/stock-drop](../projects/stock-drop/README.md)
 
 ## Improvements
 
+- [ ] **[Hammad]** Pick the cover: A (plain navy) or B (line drawing of bales) ([side by side](../projects/stock-drop/reviews/2026-10-cover-ab/side-by-side.png))
 From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html):
 
 - [ ] **[Hammad]** "BALES" label: show it once per slide instead of on every section

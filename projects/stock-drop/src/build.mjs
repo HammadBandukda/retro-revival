@@ -1,6 +1,7 @@
 // Builds the monthly Stock Drop carousel from the client's inventory sheet.
 //
 //   npm run build -- data/2026-10.xlsx   (or .csv)   -> output/2026-10/*.png
+//   add --cover-art for the line drawing of bales on the cover
 //
 // The sheet is the only source of truth: descriptions, packing, and quantities
 // are printed exactly as written (surrounding spaces trimmed), in sheet order.
@@ -217,7 +218,8 @@ function buildSlides(inv, { month, year }, assets) {
 
   slides.push(`
   <section class="slide dark">${photo}<div class="shade"></div>
-    <div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>
+    <div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>${assets.coverArt ? `
+    <div class="cover-art">${assets.coverArt}</div>` : ""}
     <div class="cover-text">
       <div class="eyebrow">Monthly wholesale release</div>
       <h1>Stock<br>Drop</h1>
@@ -236,7 +238,7 @@ function buildSlides(inv, { month, year }, assets) {
       <div class="block">
         <div class="section-head"><h2>${esc(b.section.name)}</h2><span class="qt">${esc(unitWord)}</span></div>
         <ul class="rows">${b.rows.map((r) => `
-          <li><span class="cat">${esc(r.category)}</span><span class="leader"></span><span class="pk">${esc(packingLabel(r.packing))}</span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
+          <li><span class="cat">${esc(r.category)}</span><span class="pk">${esc(packingLabel(r.packing))}</span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
         </ul>
       </div>`).join("")}
     </div>${footer}
@@ -248,7 +250,9 @@ function buildSlides(inv, { month, year }, assets) {
 
 // ---------- Render ----------
 
-const [fileArg] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const fileArg = args.find((a) => !a.startsWith("--"));
+const coverArt = args.includes("--cover-art"); // A/B option: line drawing of bales on the cover
 if (!fileArg) fail("usage: npm run build -- data/2026-10.xlsx");
 const file = resolve(process.cwd(), fileArg);
 if (!existsSync(file)) fail(`can't find ${file}`);
@@ -265,6 +269,7 @@ const photoPath = findPhoto();
 const assets = {
   logo: rel(join(REPO, "assets/brand/logo-primary-trimmed.png")),
   photo: photoPath ? rel(photoPath) : null,
+  coverArt: coverArt ? readFileSync(join(ROOT, "template/art/bales-line.svg"), "utf8") : null,
 };
 const slides = buildSlides(inventory, when, assets);
 

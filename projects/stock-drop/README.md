@@ -62,6 +62,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide cap:** the build stops if every section can't fit whole within 7 slides.
+- **Cover art (A/B option):** add `--cover-art` to the build to draw a gold line illustration of strapped bales beside the title (`template/art/bales-line.svg`). Without it, the cover is plain navy.
 - **Cover background:** brand navy. If `assets/photos/warehouse.jpg` exists, the build uses it instead. Add the file and rebuild to switch to the photo.
 
 ### Data on file
@@ -88,6 +89,7 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 
 ## Design system
 
+- **List rows:** each bale line sits in a soft, near-white container on a warm cream slide. No rules or dotted leaders: the containers guide the eye.
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
 - **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
 - **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only. It sits on an off-white plate because the file has no transparent background.

@@ -4,6 +4,7 @@ Answers and decisions confirmed by the client or Hammad. Add new entries at the 
 
 | Date | Decision | Source | Docs updated |
 | :- | :- | :- | :- |
+| 2026-10-10 | List rows use soft containers instead of rules and dotted leaders | Hammad | projects/stock-drop |
 | 2026-10-10 | The logo appears on the carousel cover only. List-slide footers carry WhatsApp, LINE, and Instagram | Hammad | projects/stock-drop |
 | 2026-10-10 | The sheet's section "3 button" shows on the slides as "Collar T-shirts (3 buttons)" | Hammad | projects/stock-drop/src/corrections.mjs |
 | 2026-10-10 | No warehouse photo exists. The carousel cover uses the brand navy background as its final design | Hammad | projects/stock-drop, brand-direction.md |
