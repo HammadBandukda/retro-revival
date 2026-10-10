@@ -7,6 +7,7 @@
 | `logo-traced.svg` | Vector trace, full colour, transparent background | Light backgrounds, any size |
 | `logo-traced-light.svg` | Vector trace with a cream wordmark | Dark backgrounds (navy) |
 | `tools/trace_logo.py` | The script that made both SVGs | Re-tracing from a sharper PNG |
+| `tools/trace-check.png` | Original vs traced vs light, side by side | Checking the trace |
 
 Colours and usage rules: [brand direction](../../docs/strategy/brand-direction.md).
 
