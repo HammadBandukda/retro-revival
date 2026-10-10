@@ -78,15 +78,11 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 /* ---------- Photo slides (cover, contact) ---------- */
 
 .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-.photo.placeholder {
+/* Used when there is no warehouse photo: brand navy with a soft light at the top. */
+.photo.none {
   background:
     repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 54px, transparent 54px 60px),
     radial-gradient(120% 80% at 50% 30%, #2a3d52 0%, #131f2c 70%);
-}
-.photo.placeholder::after {
-  content: "WAREHOUSE PHOTO PLACEHOLDER";
-  position: absolute; top: 400px; left: 0; right: 0; text-align: center;
-  font: 600 16px/1 var(--sans); letter-spacing: 0.3em; color: rgba(247,246,244,0.35);
 }
 .shade {
   position: absolute; inset: 0;

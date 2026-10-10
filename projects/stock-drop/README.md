@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** October 2026 built from the client's sheet: 14 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Waiting on the warehouse photo for the cover and contact slides.
+**Status:** October 2026 built from the client's sheet: 14 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
 
 ## Brief
 
@@ -24,7 +24,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 | :- | :- |
 | Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities |
 | Logo | Official. Use the file as is. Never redraw it |
-| Warehouse photo | The real warehouse. Use it as the background to show authenticity |
+| Warehouse photo | The real warehouse. Use it as the background to show authenticity. None exists yet, so the slides use a plain navy background |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
 
 ## Monthly workflow
@@ -57,7 +57,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide limit:** the build stops if the carousel goes over Instagram's limit of 20 slides.
-- **No photo yet:** if `assets/photos/warehouse.jpg` is missing, the cover and contact slides use a labelled placeholder.
+- **No photo:** if `assets/photos/warehouse.jpg` is missing, the cover and contact slides use a plain navy background. Add the file and rebuild to switch to the photo.
 
 ### Data on file
 

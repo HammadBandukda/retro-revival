@@ -25,6 +25,7 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 | Recommended next steps | [docs/strategy/roadmap.md](docs/strategy/roadmap.md) |
 | Stock Drop carousel | [projects/stock-drop/README.md](projects/stock-drop/README.md) |
 | Website scope draft | [projects/website/scope.md](projects/website/scope.md) |
+| Open tasks | [to-dos/](to-dos/README.md) |
 | Questions for the client | [docs/client/open-questions.md](docs/client/open-questions.md) |
 | Confirmed decisions | [docs/client/decisions.md](docs/client/decisions.md) |
 
@@ -35,5 +36,6 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 - Instagram and Facebook block automated access. Hammad must supply screenshots or exports for any new social research. Store them in `assets/screenshots/`.
 - **Platform:** Webflow is the default for the website. Confirm with Hammad before scaffolding any code-based alternative.
 - **Repo layout:** one repo for Retro Revival. Shared material goes in `docs/` and `assets/`, and each workstream gets its own folder under `projects/`. Put new work in the matching project folder, or create a new one with its own `README.md`.
+- **Tasks:** track open work in `to-dos/` (rules in its README). Add tasks as they come up and delete them when done.
 - Keep each fact in one doc and link to it instead of copying it (see conventions in [README.md](README.md)).
 - Keep updates to Hammad short and direct.

@@ -11,6 +11,7 @@ One repo for Retro Revival. Shared material sits at the top level, and each work
 ```
 .
 ├── CLAUDE.md                  # Context and working rules for Claude Code sessions
+├── to-dos/                    # Live task list: add as we go, delete when done
 ├── docs/                      # Shared knowledge, used by every project
 │   ├── research/
 │   │   ├── business-profile.md    # Company facts, products, brand
@@ -35,13 +36,13 @@ One repo for Retro Revival. Shared material sits at the top level, and each work
     └── social/                    # Reels, posts, captions
 ```
 
-Each project folder has its own `README.md` with its status, brief, and layout.
+Each project folder has its own `README.md` with its status, brief, and layout. Open tasks for every project live in [to-dos/](to-dos/README.md).
 
 ## Projects
 
 | Project | Status | Start here |
 | :- | :- | :- |
-| Stock Drop carousel | October 2026 built; waiting on warehouse photo | [projects/stock-drop](projects/stock-drop/README.md) |
+| Stock Drop carousel | October 2026 built; final checks open | [projects/stock-drop](projects/stock-drop/README.md) |
 | Website | Draft scope, not confirmed | [projects/website](projects/website/README.md) |
 | Social content | Not started | [projects/social](projects/social/README.md) |
 

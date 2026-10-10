@@ -202,7 +202,7 @@ function buildSlides(inv, { month, year }, assets) {
     </div>`;
   const photo = assets.photo
     ? `<div class="photo" style="background-image:url('${assets.photo}')"></div>`
-    : `<div class="photo placeholder"></div>`;
+    : `<div class="photo none"></div>`;
   const plate = `<div class="plate"><img src="${assets.logo}" alt="Retro Revival Thailand"></div>`;
   const unitWord = inv.unit || "Qty";
 
@@ -345,4 +345,4 @@ rmSync(overviewPath);
 await browser.close();
 
 console.log(`${els.length} slides → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
-if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg yet, so the cover uses a placeholder.");
+if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg, so the cover and contact slides use the plain navy background.");
