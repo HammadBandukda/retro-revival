@@ -96,6 +96,7 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 - **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
 - **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only. It sits on an off-white plate because the file has no transparent background.
 - **Format:** 1080 × 1350 px (Instagram 4:5).
+- **Figma:** slide 06 is rebuilt as editable layers in [Quick Projects → Retro Revival → Stock Drop](https://www.figma.com/design/fmHPTOHu3ddCyy2toFmtS3/Quick-Projects?node-id=3012-191), with a `Bale Row` component (Name, Packing, Bales text properties) and a "Retro Revival" colour variable collection. The build script is still the source of the posted slides.
 
 ## Folder layout
 
