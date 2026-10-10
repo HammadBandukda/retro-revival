@@ -1,0 +1,17 @@
+// Spelling fixes applied to descriptions and section names at build time.
+// The client's sheet is left as sent. Only add brand names and other spellings
+// that are certainly wrong, never wording choices. Approved by Hammad, 2026-10-10.
+// Each pattern matches whole words only, so an already-correct "Carhartt" is left alone.
+
+export const CORRECTIONS = [
+  { find: /\bCarhart\b/g, replace: "Carhartt" },
+  { find: /\bLevis\b/g, replace: "Levi's" },
+  { find: /\blee\b/g, replace: "Lee" },
+  { find: /\bwrangler\b/g, replace: "Wrangler" },
+  { find: /\bHarley Davidson\b/g, replace: "Harley-Davidson" },
+  { find: /\bNascar\b/g, replace: "NASCAR" },
+];
+
+export function correct(text) {
+  return CORRECTIONS.reduce((t, c) => t.replace(c.find, c.replace), text);
+}

@@ -12,11 +12,7 @@ When a question is answered, record the answer in [decisions.md](decisions.md) a
 - [ ] 8. What is the full bale category list, with current stock?
 - [ ] 9. Do they have any photo or video library beyond IG?
 - [ ] 10. Can they supply the logo as a vector file (SVG, AI, or EPS), or at least as a transparent PNG? Is there a light version for dark backgrounds? The current file is a 1280px PNG on an off-white background, and the "THAILAND" text on the ribbon is blurry
-- [ ] 11. **Inventory sheet (`ETA141026.xlsx`):** these print exactly as written. Should the client fix any of them in the sheet?
-  - "Vintage Carhart Mix Broken" (Carhart vs Carhartt)
-  - "Levis" and "Levi's" are both used (for example "Levis 501 Premium" and "Levi's 501")
-  - "lee & wrangler Premium" (lowercase) next to "Lee & Wrangler"
-  - Section "3 button" holds the collar T-shirts. Is that the name buyers should see?
+- [ ] 11. **Inventory sheet:** the section "3 button" holds the collar T-shirts. Is that the name buyers should see? *(Brand misspellings are now fixed at build time. See [decisions](decisions.md).)*
 - [ ] 12. Does "ETA141026" mean the container arrives on 14 Oct 2026? If so, should the carousel say when the stock lands?
 
 ## Unverified assumptions to confirm

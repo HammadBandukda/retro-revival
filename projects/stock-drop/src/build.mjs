@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import ExcelJS from "exceljs";
 import { chromium } from "playwright";
 import { CONTACT } from "./brand.mjs";
+import { correct } from "./corrections.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPO = resolve(ROOT, "../..");
@@ -103,6 +104,7 @@ async function loadInventory(file) {
 
   const items = [];
   let sheetTotal = null;
+  const corrected = [];
   table.slice(headerAt + 1).forEach((r, i) => {
     const item = Object.fromEntries(Object.keys(COLUMNS).map((k) => [k, get(r, k)]));
     const line = headerAt + i + 2;
@@ -114,6 +116,11 @@ async function loadInventory(file) {
     if (!item.category) fail(`line ${line} has no description`);
     if (!item.section) fail(`line ${line} (${item.category}) has no section`);
     if (!/^\d+$/.test(item.quantity)) fail(`line ${line} (${item.category}) has quantity "${item.quantity}", expected a whole number`);
+    for (const key of ["category", "section"]) {
+      const fixed = correct(item[key]);
+      if (fixed !== item[key]) corrected.push(`${item[key]} → ${fixed}`);
+      item[key] = fixed;
+    }
     items.push(item);
   });
   if (!items.length) fail(`no inventory lines in ${file}`);
@@ -131,7 +138,7 @@ async function loadInventory(file) {
     s.items.push(item);
   }
   const units = [...new Set(items.map((it) => it.unit).filter(Boolean))];
-  return { items, sections, total, unit: units.length === 1 ? units[0] : "" };
+  return { items, sections, total, corrected, unit: units.length === 1 ? units[0] : "" };
 }
 
 function monthLabel(id) {
@@ -295,4 +302,5 @@ rmSync(overviewPath);
 await browser.close();
 
 console.log(`${els.length} slides (max ${MAX_SLIDES}) → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
+if (inventory.corrected.length) console.log(`Spelling fixes (src/corrections.mjs):\n  ${[...new Set(inventory.corrected)].join("\n  ")}`);
 if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg, so the cover uses the plain navy background.");
