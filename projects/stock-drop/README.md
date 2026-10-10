@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** October 2026 built from the client's sheet: 8 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
+**Status:** October 2026 built from the client's sheet: 8 slides, 80 bale lines, 641 bales. **Slides to post and a zip download: [output/2026-10](output/2026-10/README.md).** Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
 
 ## Brief
 
@@ -36,8 +36,8 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
    npm run build -- data/2026-11.xlsx
    ```
 3. Check `output/2026-11/overview.png`.
-4. Run the `critique` skill (report in `reviews/`) and the `social` skill (caption in `captions/`).
-5. Post `01.png` onward in order, with the caption.
+4. Run the `critique` skill (report in `reviews/`) and the `social` skill (caption in `captions/`), then build again so the caption goes into the download pack.
+5. Commit and push. Open `output/2026-11/` on GitHub: it previews every slide and has one zip (`stock-drop-2026-11.zip`) with the slides and `caption.txt`. Post `01.png` onward in order, with the caption.
 
 ### Sheet format
 
@@ -94,7 +94,7 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 - **Cover pills:** the build checks that the pills never run into the logo or the drawing.
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
 - **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
-- **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only. It sits on an off-white plate because the file has no transparent background.
+- **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only, on an off-white plate. Traced SVGs with a transparent background now exist ([brand assets](../../assets/brand/README.md)); whether the cover switches to the light SVG is an [open to-do](../../to-dos/brand.md).
 - **Format:** 1080 × 1350 px (Instagram 4:5).
 - **Figma:** slide 06 is rebuilt as editable layers in [Quick Projects → Retro Revival → Stock Drop](https://www.figma.com/design/fmHPTOHu3ddCyy2toFmtS3/Quick-Projects?node-id=3012-191), with a `Bale Row` component (Name, Packing, Bales text properties) and a "Retro Revival" colour variable collection. The build script is still the source of the posted slides.
 
@@ -105,7 +105,7 @@ stock-drop/
 ├── data/        # one inventory sheet per month (.xlsx or .csv)
 ├── src/         # build script, contact details, spelling fixes
 ├── template/    # styles and fonts
-├── output/      # built slides, one folder per month (rebuilt each run)
+├── output/      # built slides, caption and zip, one folder per month (rebuilt each run)
 ├── captions/    # Instagram caption per month (social skill)
 └── reviews/     # design critique per month (critique skill)
 ```

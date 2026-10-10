@@ -7,6 +7,7 @@
 // are printed exactly as written (surrounding spaces trimmed), in sheet order.
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { basename, dirname, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import ExcelJS from "exceljs";
@@ -327,6 +328,30 @@ await page.goto(`file://${overviewPath}`);
 await page.screenshot({ path: join(outDir, "overview.png"), fullPage: true });
 rmSync(overviewPath);
 await browser.close();
+
+// Export pack: a README that previews every slide on GitHub, plus one zip to download.
+const slideFiles = els.map((_, i) => `${pad(i + 1)}.png`);
+const captionSrc = join(ROOT, "captions", `${id}.md`);
+const caption = existsSync(captionSrc) ? readFileSync(captionSrc, "utf8").split(/^---$/m)[1]?.trim() : null;
+if (caption) writeFileSync(join(outDir, "caption.txt"), `${caption}\n`);
+const zipName = `stock-drop-${id}.zip`;
+let zipped = false;
+try {
+  execFileSync("zip", ["-qX", zipName, ...slideFiles, ...(caption ? ["caption.txt"] : [])], { cwd: outDir });
+  zipped = true;
+} catch {
+  console.warn("zip isn't installed, so the download pack was skipped. The slides are still in the folder");
+}
+writeFileSync(join(outDir, "README.md"), `# Stock Drop · ${when.month} ${when.year}
+
+Post the slides in order, ${slideFiles[0]} to ${slideFiles.at(-1)}.
+
+${zipped ? `**Download everything:** [${zipName}](${zipName}) (${slideFiles.length} slides${caption ? " and the caption" : ""}). On GitHub, open the file and click the download button.\n\n` : ""}${caption ? "**Caption:** [caption.txt](caption.txt), ready to paste.\n\n" : ""}Built ${new Date().toISOString().slice(0, 10)} from \`data/${basename(file)}\`: ${inventory.items.length} lines, ${inventory.total} ${(inventory.unit || "units").toLowerCase()}. Don't edit this folder: the build replaces it.
+
+| # | Slide |
+| :- | :- |
+${slideFiles.map((f, i) => `| ${i + 1} | <a href="${f}"><img src="${f}" width="270" alt="Slide ${i + 1}"></a> |`).join("\n")}
+`);
 
 console.log(`${els.length} slides (max ${MAX_SLIDES}) → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
 if (inventory.corrected.length) console.log(`Fixes (src/corrections.mjs):\n  ${[...new Set(inventory.corrected)].join("\n  ")}`);
