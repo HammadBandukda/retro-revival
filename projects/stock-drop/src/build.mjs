@@ -163,7 +163,7 @@ function paginate(sections) {
   let page = null, used = 0;
   const newPage = () => { pages.push((page = { blocks: [] })); used = 0; };
   newPage();
-  sections.forEach((s, si) => {
+  sections.forEach((s) => {
     let i = 0;
     while (i < s.items.length) {
       const left = s.items.length - i;
@@ -172,7 +172,7 @@ function paginate(sections) {
       if (fit < left && left - fit < MIN_ROWS) fit = left - MIN_ROWS; // leave 2+ for the next slide
       if (fit < Math.min(MIN_ROWS, left)) { newPage(); continue; }
       const rows = s.items.slice(i, i + Math.min(fit, left));
-      page.blocks.push({ section: s, num: si + 1, rows, cont: i > 0 });
+      page.blocks.push({ section: s, rows });
       used += gap + HEAD_HEIGHT + rows.length * ROW_HEIGHT;
       i += rows.length;
     }
@@ -182,18 +182,12 @@ function paginate(sections) {
 
 function buildSlides(inv, { month, year }, assets) {
   const pages = paginate(inv.sections);
-  const total = pages.length + 4; // cover, index, ...inventory, trust, contact
+  const total = pages.length + 2; // cover, ...inventory, contact
   if (total > IG_MAX_SLIDES) fail(`${total} slides is over Instagram's limit of ${IG_MAX_SLIDES}`);
 
-  const firstPage = new Map();
-  pages.forEach((p, i) => p.blocks.forEach((b) => { if (!firstPage.has(b.section)) firstPage.set(b.section, i + 3); }));
-
   const label = `${month} ${year}`;
-  const top = (n) => `
-    <div class="chrome-top">
-      <img class="logo" src="${assets.logo}" alt="Retro Revival Thailand">
-      <div class="meta"><div class="eyebrow">Stock Drop · ${esc(label)}</div><div class="page">${pad(n)} / ${pad(total)}</div></div>
-    </div>`;
+  const top = `
+    <div class="chrome-top"><img class="logo" src="${assets.logo}" alt="Retro Revival Thailand"></div>`;
   const bottom = `
     <div class="chrome-bottom">
       <span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
@@ -220,34 +214,12 @@ function buildSlides(inv, { month, year }, assets) {
     <div class="swipe">SWIPE<span>→</span></div>
   </section>`);
 
-  const half = Math.ceil(inv.sections.length / 2);
-  const indexCol = (list, offset) => `<ul>${list.map((s, i) => `
-          <li><span class="num">${pad(offset + i + 1)}</span><span class="name">${esc(s.name)}</span><span class="pg">${pad(firstPage.get(s))}</span></li>`).join("")}
-        </ul>`;
-  slides.push(`
-  <section class="slide">${top(2)}
-    <div class="body">
-      <div class="eyebrow">In this drop</div>
-      <h2>${esc(month)} <em>${esc(year)}</em></h2>
-      <div class="stats">
-        <div><span class="v">${inv.total}</span><span class="k">${esc(unitWord)}</span></div>
-        <div><span class="v">${inv.items.length}</span><span class="k">Bale types</span></div>
-        <div><span class="v">${inv.sections.length}</span><span class="k">Sections</span></div>
-      </div>
-      <div class="index-head"><span>Section</span><span>Page</span><span>Section</span><span>Page</span></div>
-      <div class="index">
-        ${indexCol(inv.sections.slice(0, half), 0)}
-        ${indexCol(inv.sections.slice(half), half)}
-      </div>
-    </div>${bottom}
-  </section>`);
-
-  pages.forEach((p, i) => {
+  pages.forEach((p) => {
     slides.push(`
-  <section class="slide">${top(i + 3)}
+  <section class="slide">${top}
     <div class="body">${p.blocks.map((b) => `
       <div class="block">
-        <div class="section-head"><span class="num">${pad(b.num)}</span><h2>${esc(b.section.name)}</h2>${b.cont ? `<span class="cont">continued</span>` : ""}<span class="labels"><span class="pk">Packing</span><span class="qt">${esc(unitWord)}</span></span></div>
+        <div class="section-head"><h2>${esc(b.section.name)}</h2><span class="qt">${esc(unitWord)}</span></div>
         <ul class="rows">${b.rows.map((r) => `
           <li><span class="cat">${esc(r.category)}</span><span class="leader"></span><span class="pk">${esc(packingLabel(r.packing))}</span><span class="qty">${esc(r.quantity)}</span></li>`).join("")}
         </ul>
@@ -255,22 +227,6 @@ function buildSlides(inv, { month, year }, assets) {
     </div>${bottom}
   </section>`);
   });
-
-  slides.push(`
-  <section class="slide dark">
-    <div class="chrome-top"><span class="wordmark-small">RETRO REVIVAL THAILAND</span>
-      <div class="meta"><div class="eyebrow">Stock Drop · ${esc(label)}</div><div class="page">${pad(total - 1)} / ${pad(total)}</div></div></div>
-    <div class="body">
-      <div class="eyebrow">Why Retro Revival</div>
-      <h2>A warehouse <em>you can rely on.</em></h2>
-      <div class="pillar-grid">
-        <div><span class="n">01</span><h3>Fresh containers, every month</h3><p>New stock imported and sorted monthly.</p></div>
-        <div><span class="n">02</span><h3>Sorted into categorized bales</h3><p>Clear categories and consistent quality.</p></div>
-        <div><span class="n">03</span><h3>Bangkok warehouse</h3><p>${esc(CONTACT.locationPitch)}</p></div>
-        <div><span class="n">04</span><h3>Registered company</h3><p>${esc(CONTACT.legalName)}</p></div>
-      </div>
-    </div>${bottom}
-  </section>`);
 
   slides.push(`
   <section class="slide dark">${photo}<div class="shade"></div>${plate}
@@ -326,7 +282,7 @@ await page.evaluate(() => document.fonts.ready);
 const clipped = await page.$$eval(".slide", (slides) =>
   slides.flatMap((s, i) => [
     ...[...s.querySelectorAll(".body")].filter((el) => el.scrollHeight > el.clientHeight + 1),
-    ...[...s.querySelectorAll(".rows .cat, .rows .pk, .index .name, .section-head h2")].filter((el) => el.scrollWidth > el.clientWidth + 1),
+    ...[...s.querySelectorAll(".rows .cat, .rows .pk, .section-head h2")].filter((el) => el.scrollWidth > el.clientWidth + 1),
   ].map(() => i + 1)));
 if (clipped.length) fail(`text is cut off on slide ${[...new Set(clipped)].join(", ")}. Adjust the layout in build.mjs and styles.css`);
 

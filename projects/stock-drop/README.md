@@ -2,7 +2,7 @@
 
 A monthly Instagram carousel that shows the latest inventory. It is meant to become the brand's signature visual.
 
-**Status:** October 2026 built from the client's sheet: 14 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
+**Status:** October 2026 built from the client's sheet: 12 slides, 80 bale lines, 641 bales ([overview](output/2026-10/overview.png)). Open tasks are in [to-dos/stock-drop.md](../../to-dos/stock-drop.md).
 
 ## Brief
 
@@ -67,13 +67,15 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 ## Slides
 
+Less is more: the cover, the list, and how to order. Nothing else.
+
 | # | Slide | Content |
 | :- | :- | :- |
-| 1 | Cover | Warehouse photo, logo, "Stock Drop", month |
-| 2 | Index | Total bales, bale types, and sections, plus a two-column section index with page numbers |
-| 3+ | Inventory | Table of description, packing, and bales. Sections flow across slides, with at least 2 lines on each side of a split |
-| n-1 | Why Retro Revival | Four confirmed facts: monthly containers, sorted bales, Bangkok location, registered company |
-| n | Contact | WhatsApp, LINE, address, Instagram |
+| 1 | Cover | Logo, "Stock Drop", month |
+| 2+ | List | Section name, then one line per bale: description, packing, bales. Sections flow across slides, with at least 2 lines on each side of a split |
+| Last | Contact | WhatsApp, LINE, address, Instagram |
+
+List slides carry only the logo at the top and the WhatsApp, LINE, and Instagram details at the bottom. No index, totals, page numbers, or section numbers.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
 

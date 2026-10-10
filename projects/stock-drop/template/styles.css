@@ -58,12 +58,6 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   display: flex; align-items: center; justify-content: space-between;
 }
 .chrome-top .logo { height: 104px; mix-blend-mode: multiply; }
-.chrome-top .meta { text-align: right; }
-.chrome-top .meta .eyebrow { color: var(--gold-dark); }
-.chrome-top .meta .page {
-  margin-top: 12px; font: 500 20px/1 var(--sans);
-  letter-spacing: 0.12em; color: rgba(28, 44, 60, 0.6);
-}
 
 .chrome-bottom {
   position: absolute; left: 72px; right: 72px; bottom: 56px;
@@ -72,8 +66,6 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   font: 500 21px/1 var(--sans); letter-spacing: 0.02em;
 }
 .chrome-bottom b { font-weight: 600; letter-spacing: 0.2em; font-size: 15px; margin-right: 10px; color: var(--gold-dark); }
-.dark .chrome-bottom { border-top-color: rgba(247, 246, 244, 0.18); }
-.dark .chrome-bottom b { color: var(--gold-light); }
 
 /* ---------- Photo slides (cover, contact) ---------- */
 
@@ -123,33 +115,9 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 }
 .swipe span { color: var(--gold-light); font-size: 26px; margin-left: 10px; vertical-align: -2px; }
 
-/* ---------- Index ---------- */
+/* ---------- Inventory body ---------- */
 
 .body { position: absolute; top: 220px; left: 72px; right: 72px; height: 980px; } /* BODY_HEIGHT in build.mjs */
-.body > .eyebrow { color: var(--gold-dark); }
-.body h2 { margin-top: 22px; font: 600 112px/0.95 var(--serif); }
-.body h2 em { font-weight: 500; color: var(--gold); }
-.lede { margin-top: 26px; font: 400 26px/1.45 var(--sans); color: rgba(28, 44, 60, 0.75); max-width: 820px; }
-
-.stats { margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 2px solid var(--navy); border-bottom: 1px solid var(--rule); }
-.stats div { padding: 26px 0 24px; }
-.stats div + div { padding-left: 32px; border-left: 1px solid var(--rule); }
-.stats .v { display: block; font: 600 88px/1 var(--serif); font-variant-numeric: lining-nums; }
-.stats .k { display: block; margin-top: 8px; font: 600 17px/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-dark); }
-
-.index-head {
-  margin-top: 32px; display: grid; grid-template-columns: 1fr auto 1fr auto; column-gap: 32px;
-  font: 600 14px/1 var(--sans); letter-spacing: 0.26em; text-transform: uppercase; color: rgba(28,44,60,0.5);
-}
-.index-head span:nth-child(3) { padding-left: 40px; }
-.index { margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 72px; border-top: 1px solid var(--navy); }
-.index li {
-  list-style: none; display: grid; grid-template-columns: 52px 1fr auto; align-items: baseline;
-  height: 62px; padding-top: 16px; border-bottom: 1px solid var(--rule);
-}
-.index .num { font: italic 500 26px/1 var(--serif); color: var(--gold); }
-.index .name { font: 600 34px/1.1 var(--serif); white-space: nowrap; overflow: hidden; }
-.index .pg { font: 500 20px/1 var(--sans); letter-spacing: 0.08em; color: rgba(28,44,60,0.6); font-variant-numeric: tabular-nums; }
 
 /* ---------- Inventory ---------- */
 
@@ -159,16 +127,14 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   display: flex; align-items: baseline; gap: 20px;
   height: 112px; padding-top: 20px; border-bottom: 2px solid var(--navy);
 }
-.section-head .num { font: italic 500 44px/1 var(--serif); color: var(--gold); }
 .section-head h2 { margin: 0; font: 600 76px/1 var(--serif); white-space: nowrap; }
-.section-head .cont { font: italic 500 30px/1 var(--serif); color: rgba(28,44,60,0.55); }
-.section-head .labels {
-  margin-left: auto; display: flex;
-  font: 600 14px/1 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: rgba(28,44,60,0.5);
+.section-head .qt {
+  margin-left: auto; font: 600 14px/1 var(--sans); letter-spacing: 0.24em;
+  text-transform: uppercase; color: rgba(28,44,60,0.5);
 }
 
 /* Columns: description · leader · packing · quantity */
-.section-head .pk, .rows .pk { width: 150px; text-align: right; }
+.rows .pk { width: 150px; text-align: right; }
 .section-head .qt, .rows .qty { width: 96px; text-align: right; }
 
 .rows li {
@@ -179,29 +145,13 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .rows .leader { flex: 1; min-width: 24px; border-bottom: 2px dotted rgba(28,44,60,0.22); transform: translateY(-7px); }
 .rows .pk { flex: none; font: 600 18px/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
 .rows .qty { flex: none; font: 600 48px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
-.section-head .labels .qt { margin-left: 16px; }
-
-/* ---------- Trust (dark) ---------- */
-
-.dark .body > .eyebrow { color: var(--gold-light); }
-.dark .body h2 em { color: var(--gold-light); }
-.dark .chrome-top .meta .eyebrow { color: var(--gold-light); }
-.dark .chrome-top .meta .page { color: rgba(247,246,244,0.6); }
-.pillar-grid { margin-top: 70px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(247,246,244,0.2); }
-.pillar-grid div { padding: 44px 40px 48px 0; border-bottom: 1px solid rgba(247,246,244,0.2); }
-.pillar-grid div:nth-child(odd) { border-right: 1px solid rgba(247,246,244,0.2); }
-.pillar-grid div:nth-child(even) { padding-left: 40px; }
-.pillar-grid .n { font: italic 500 40px/1 var(--serif); color: var(--gold-light); }
-.pillar-grid h3 { margin-top: 22px; font: 600 50px/1.02 var(--serif); }
-.pillar-grid p { margin-top: 16px; font: 400 23px/1.45 var(--sans); color: rgba(247,246,244,0.72); }
-.wordmark-small { font: 600 18px/1 var(--sans); letter-spacing: 0.34em; color: var(--gold-light); }
 
 /* ---------- Contact ---------- */
 
 .contact-text { position: absolute; left: 80px; right: 80px; bottom: 96px; color: var(--cream); }
 .contact-text .eyebrow { color: var(--gold-light); }
 .contact-text h2 { margin-top: 24px; font: 600 132px/0.9 var(--serif); }
-.contact-text .lede { color: rgba(247,246,244,0.8); margin-top: 24px; }
+.contact-text .lede { margin-top: 24px; font: 400 26px/1.45 var(--sans); color: rgba(247,246,244,0.8); }
 .channels { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .channels > div { border: 1px solid rgba(210,173,102,0.6); padding: 26px 30px; }
 .channels .eyebrow { font-size: 16px; }
