@@ -303,4 +303,3 @@ await browser.close();
 
 console.log(`${els.length} slides (max ${MAX_SLIDES}) → ${relative(process.cwd(), outDir)}/  (${inventory.items.length} lines, ${inventory.total} ${inventory.unit || "units"})`);
 if (inventory.corrected.length) console.log(`Spelling fixes (src/corrections.mjs):\n  ${[...new Set(inventory.corrected)].join("\n  ")}`);
-if (!photoPath) console.log("Note: no assets/photos/warehouse.jpg, so the cover uses the plain navy background.");

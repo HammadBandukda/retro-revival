@@ -24,7 +24,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 | :- | :- |
 | Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities. The one exception is approved brand-spelling fixes in `src/corrections.mjs` |
 | Logo | Official. Use the file as is. Never redraw it |
-| Warehouse photo | The real warehouse. Use it as the background to show authenticity. None exists yet, so the cover uses a plain navy background |
+| Warehouse photo | None exists. The cover uses the brand navy background by design. If a real photo ever turns up, save it as `assets/photos/warehouse.jpg` and rebuild |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
 
 ## Monthly workflow
@@ -59,7 +59,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide cap:** the build stops if every section can't fit whole within 7 slides.
-- **No photo:** if `assets/photos/warehouse.jpg` is missing, the cover uses a plain navy background. Add the file and rebuild to switch to the photo.
+- **Cover background:** brand navy. If `assets/photos/warehouse.jpg` exists, the build uses it instead. Add the file and rebuild to switch to the photo.
 
 ### Data on file
 

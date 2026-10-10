@@ -49,4 +49,4 @@ Sampled from the official logo.
   - File: `assets/brand/logo-primary.png`, 1280×853 PNG on an off-white background. Source: Figma, *Quick Projects* → *Retro-Revival/Logo*.
   - Cropped copy, with no other changes: `logo-primary-trimmed.png`.
   - It has no transparent background, no vector version, and no light version for dark backgrounds yet (see [open questions](../client/open-questions.md)).
-- **Warehouse photography:** use the client's real warehouse photos to show authenticity. Stored in `assets/photos/`.
+- **Warehouse photography:** none exists yet. Designs use the brand navy instead of a photo. If real photos turn up, store them in `assets/photos/`.
