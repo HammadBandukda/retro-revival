@@ -38,9 +38,15 @@ Sampled from the official logo.
 | Gold | `#B88830` | Lions and monogram |
 | Off-white | `#F7F6F4` | Logo background |
 
+## Typography
+
+- **Cormorant Garamond** for headings and numbers: the editorial, heritage voice.
+- **Inter** for body text, labels, and data: clean and very readable on phones.
+
 ## Brand assets
 
 - **Logo:** the official logo is final. Use the supplied file as is. Do not redraw or redesign it. The trademark question is still open (see [business profile](../research/business-profile.md#brand)).
   - File: `assets/brand/logo-primary.png`, 1280×853 PNG on an off-white background. Source: Figma, *Quick Projects* → *Retro-Revival/Logo*.
+  - Cropped copy, with no other changes: `logo-primary-trimmed.png`.
   - It has no transparent background, no vector version, and no light version for dark backgrounds yet (see [open questions](../client/open-questions.md)).
 - **Warehouse photography:** use the client's real warehouse photos to show authenticity. Stored in `assets/photos/`.

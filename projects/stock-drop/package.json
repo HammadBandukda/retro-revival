@@ -1,0 +1,11 @@
+{
+  "name": "retro-revival-stock-drop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

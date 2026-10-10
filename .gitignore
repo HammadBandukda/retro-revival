@@ -11,3 +11,4 @@ desktop.ini
 # Temp / exports in progress
 *.tmp
 ~$*
+node_modules/
