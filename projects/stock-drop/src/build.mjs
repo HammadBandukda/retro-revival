@@ -158,7 +158,8 @@ const packingLabel = (p) => p.replace(/^(\d+)\s*/, "$1 ");
 
 // Sections are never split across slides. They are packed onto slides largest first
 // (first-fit decreasing), then each slide lists its sections in sheet order, and the
-// slides run in the order of their first section in the sheet.
+// slides run in the order of their first section in the sheet, except the emptiest
+// slide, which always goes last.
 function paginate(sections, rowHeight) {
   const height = (s) => HEAD_HEIGHT + s.items.length * rowHeight;
   if (sections.some((s) => height(s) > BODY_HEIGHT)) return null;
@@ -169,10 +170,13 @@ function paginate(sections, rowHeight) {
     if (page) { page.entries.push(entry); page.used += SECTION_GAP + height(entry.s); }
     else pages.push({ entries: [entry], used: height(entry.s) });
   }
-  return pages
-    .map((p) => p.entries.sort((a, b) => a.i - b.i))
-    .sort((a, b) => a[0].i - b[0].i)
-    .map((entries) => ({ blocks: entries.map(({ s }) => ({ section: s, rows: s.items })) }));
+  const ordered = pages
+    .map((p) => ({ ...p, entries: p.entries.sort((a, b) => a.i - b.i) }))
+    .sort((a, b) => a.entries[0].i - b.entries[0].i);
+  // The emptiest slide goes last, so the carousel doesn't look finished early.
+  const emptiest = ordered.reduce((m, p, i) => (p.used < ordered[m].used ? i : m), 0);
+  ordered.push(...ordered.splice(emptiest, 1));
+  return ordered.map((p) => ({ blocks: p.entries.map(({ s }) => ({ section: s, rows: s.items })) }));
 }
 
 function fitPages(sections) {

@@ -76,6 +76,7 @@ Less is more: **7 slides at most**, the cover and the list. Nothing else.
 
 - List slides carry only the list, plus a footer with the logo, WhatsApp, LINE, and Instagram. No index, totals, page numbers, or section numbers.
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
+- **Emptiest slide last:** the slide with the most free space always goes at the end, so the carousel never looks finished early.
 - **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first where every section fits whole within 7 slides. If a month's sheet can't fit even at 54px, the build stops and names the largest section. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
 
 Contact details come from `src/brand.mjs`. Keep that file in sync with the [business profile](../../docs/research/business-profile.md).
