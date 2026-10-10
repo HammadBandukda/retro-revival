@@ -202,7 +202,6 @@ function buildSlides(inv, { month, year }, assets) {
   const label = `${month} ${year}`;
   const footer = `
     <div class="footer">
-      <img class="logo" src="${assets.logo}" alt="Retro Revival Thailand">
       <div class="contacts">
         <span><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span>
         <span><b>LINE</b>${esc(CONTACT.line)}</span>

@@ -79,7 +79,7 @@ Less is more: **7 slides at most**, the cover and the list. Nothing else.
 | 1 | Cover | Logo, "Stock Drop", month, location, WhatsApp and LINE |
 | 2–7 | List | Section name, then one line per bale: description, packing, bales. **A section is never split across slides** |
 
-- List slides carry only the list, plus a footer with the logo, WhatsApp, LINE, and Instagram. No index, totals, page numbers, or section numbers.
+- List slides carry only the list, plus a footer with WhatsApp, LINE, and Instagram. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
 - **Emptiest slide last:** the slide with the most free space always goes at the end, so the carousel never looks finished early.
 - **Auto-fit:** the build tries row heights from most to least readable (72px down to 54px) and uses the first where every section fits whole within 7 slides. If a month's sheet can't fit even at 54px, the build stops and names the largest section. Raise `MAX_SLIDES` in `src/build.mjs` only if you accept more slides.
