@@ -11,7 +11,7 @@ When a question is answered, record the answer in [decisions.md](decisions.md) a
 - [ ] 7. Do they know about the RR / Rolls-Royce similarity? Are they open to refining the logo?
 - [ ] 8. What is the full bale category list, with current stock?
 - [ ] 9. Do they have any photo or video library beyond IG?
-- [ ] 10. Can they supply the logo as a vector file (SVG, AI, or EPS), or at least as a transparent PNG? Is there a light version for dark backgrounds? The current file is a 1280px PNG on an off-white background, and the "THAILAND" text on the ribbon is blurry
+- [ ] 10. Can they supply the logo as a vector file (SVG, AI, or EPS), or at least as a transparent PNG? Is there a light version for dark backgrounds? The current file is a 1280px PNG on an off-white background, and the "THAILAND" text on the ribbon is blurry. *(A traced SVG exists as a working copy; see [assets/brand](../../assets/brand/README.md).)*
 - [ ] 12. Does "ETA141026" mean the container arrives on 14 Oct 2026? If so, should the carousel say when the stock lands?
 
 ## Unverified assumptions to confirm

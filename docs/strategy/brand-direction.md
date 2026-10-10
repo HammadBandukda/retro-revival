@@ -48,5 +48,6 @@ Sampled from the official logo.
 - **Logo:** the official logo is final. Use the supplied file as is. Do not redraw or redesign it. The trademark question is still open (see [business profile](../research/business-profile.md#brand)).
   - File: `assets/brand/logo-primary.png`, 1280×853 PNG on an off-white background. Source: Figma, *Quick Projects* → *Retro-Revival/Logo*.
   - Cropped copy, with no other changes: `logo-primary-trimmed.png`.
-  - It has no transparent background, no vector version, and no light version for dark backgrounds yet (see [open questions](../client/open-questions.md)).
+  - Vector traces (working copies, recolourable): `logo-traced.svg` and `logo-traced-light.svg` for dark backgrounds. See [assets/brand](../../assets/brand/README.md).
+  - The client's original vector file is still wanted: the traces are softer than the master artwork (see [open questions](../client/open-questions.md)).
 - **Warehouse photography:** none exists yet. Designs use the brand navy instead of a photo. If real photos turn up, store them in `assets/photos/`.
