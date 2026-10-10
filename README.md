@@ -11,6 +11,7 @@ One repo for Retro Revival. Shared material sits at the top level, and each work
 ```
 .
 ├── CLAUDE.md                  # Context and working rules for Claude Code sessions
+├── .claude/                   # Claude skills and the shared brand context they read
 ├── to-dos/                    # Live task list: add as we go, delete when done
 ├── docs/                      # Shared knowledge, used by every project
 │   ├── research/

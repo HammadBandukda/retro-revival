@@ -1,6 +1,6 @@
 # Claude Skills Review
 
-Public GitHub skill packs reviewed for Retro Revival work: design review, social content, and winning customers. Reviewed 2026-10-10 by reading each `SKILL.md`, not just directory listings. **Nothing is installed yet.**
+Public GitHub skill packs reviewed for Retro Revival work: design review, social content, and winning customers. Reviewed 2026-10-10 by reading each `SKILL.md`, not just directory listings. **Installed:** `critique`, `social`, `sms`, `prospecting`, `product-marketing`, in [.claude/skills](../../.claude/skills/README.md).
 
 ## Shortlist
 
@@ -43,12 +43,9 @@ Public GitHub skill packs reviewed for Retro Revival work: design review, social
   - The local-shop playbook covers vintage stores in the target markets, using Google Maps, directories, and Instagram.
   - Its rules: never scrape LinkedIn, and verify contacts before outreach.
 
-## Installing (when approved)
+## Installed
 
-Recommended starting set: `critique`, `social`, `sms`, `prospecting`, `product-marketing`.
-
-- **Option A, in this repo** (`.claude/skills/`): every Claude Code session on Retro Revival gets them. Copy the folders at a pinned commit and keep each licence file with them.
-- **Option B, on your machine:** `npx skills add coreyhaines31/marketingskills --skill social` (and so on). They're then available in all your projects, not just this one.
+The starting set is in this repo at `.claude/skills/`, so every Claude Code session on Retro Revival gets it. Versions, licences, and house rules: [.claude/skills/README.md](../../.claude/skills/README.md). Candidates for later: `design-review` and `ui-design-review` once the website exists, and `cold-email` for outreach.
 
 Versions reviewed:
 

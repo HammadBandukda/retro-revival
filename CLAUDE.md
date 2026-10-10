@@ -20,7 +20,7 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 | Instagram, Facebook, other channels | [docs/research/online-presence.md](docs/research/online-presence.md) |
 | Warehouse reel breakdown | [docs/research/reel-analysis.md](docs/research/reel-analysis.md) |
 | Competitors | [docs/research/competitors.md](docs/research/competitors.md) |
-| Claude skills worth installing | [docs/research/claude-skills.md](docs/research/claude-skills.md) |
+| Installed Claude skills | [.claude/skills/README.md](.claude/skills/README.md) (review: [docs/research/claude-skills.md](docs/research/claude-skills.md)) |
 | Strengths and weaknesses | [docs/strategy/assessment.md](docs/strategy/assessment.md) |
 | Brand positioning, personality, audience | [docs/strategy/brand-direction.md](docs/strategy/brand-direction.md) |
 | Recommended next steps | [docs/strategy/roadmap.md](docs/strategy/roadmap.md) |
@@ -39,4 +39,5 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 - **Repo layout:** one repo for Retro Revival. Shared material goes in `docs/` and `assets/`, and each workstream gets its own folder under `projects/`. Put new work in the matching project folder, or create a new one with its own `README.md`.
 - **Tasks:** track open work in `to-dos/` (rules in its README). Add tasks as they come up and delete them when done.
 - Keep each fact in one doc and link to it instead of copying it (see conventions in [README.md](README.md)).
+- **Skills:** the skills in `.claude/skills/` are generic. Where they conflict with these rules, these rules win.
 - Keep updates to Hammad short and direct.
