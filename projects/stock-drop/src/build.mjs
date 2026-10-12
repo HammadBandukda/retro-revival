@@ -243,7 +243,7 @@ function buildSlides(inv, { month, year }, assets) {
       <h1>Stock Drop</h1>
       <div class="month">${esc(label)}</div>
       <div class="pills">${inv.sections.map((x) => `<span>${esc(x.name)}</span>`).join("")}</div>
-      <div class="pillars">Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
+      <div class="pillars">Warehouse C5, Lat Krabang, Bangkok<br>${esc(CONTACT.locationPitch)}</div>
       <div class="cover-contacts"><span class="wa"><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span></div>
     </div>
     <div class="swipe">SWIPE<span>→</span></div>

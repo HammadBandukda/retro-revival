@@ -53,7 +53,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 
 - Descriptions, sections, packing, and quantities print as written. Two exceptions:
   - **Spelling fixes:** brand names that are certainly misspelled are corrected at build time from `src/corrections.mjs` (for example Carhart → Carhartt, Levis → Levi's). The sheet itself is never edited, and the build lists every fix it makes. Add only certain fixes, never wording changes.
-  - **Section names:** the same file renames sections Hammad has approved (for example "3 button" → "Collar T-shirts (3 buttons)").
+  - **Section names:** the same file renames sections Hammad has approved (for example "3 button" → "Collar T-shirts (3 buttons)"), including the headings the client used in their [July carousel](../../docs/research/july-carousel.md) (Baby → "Children (0–14 years)").
   - **Spacing:** `200Pcs` shows as `200 PCS`.
 - A totals row (a quantity with no description or section) is checked against the sum of the lines. The build stops if they don't match.
 

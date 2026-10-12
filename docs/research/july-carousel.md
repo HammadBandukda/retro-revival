@@ -27,6 +27,12 @@ These are the client's own words. None of them are confirmed for our posts, so t
 
 July had sections October doesn't: **Ladies Vintage Dress** (Ladies USA Dresses), **Children (0–14 years)** (Branded Baby Mix), **Face Caps** (RR Vintage Caps), **Shirts** (Chaps & Nautica, Cowboy, Hawaii, LLW, Polo RL, Tommy Hilfiger and others), **Sports T-shirts** (Football Jerseys, NBA/NFL Jerseys) and **Cotton Pants**. Expect some of these in future sheets. The Stock Drop build prints whatever sections the sheet has, so nothing needs changing for them.
 
+## What we took from it
+
+- **Section headings:** where July named the same section, the Stock Drop uses the client's heading: Baby → "Children (0–14 years)", Overall → "Overalls", Pants → "Cotton Pants", Winter → "Winter Mix" (`projects/stock-drop/src/corrections.mjs`).
+- **Warehouse C5** on the cover location line, and the street address in the [caption](../../projects/stock-drop/captions/2026-10.md).
+- The "ask for a category" invitation, moved into the caption.
+
 ## How ours differs
 
 | July (client) | Stock Drop (ours) | Why |
@@ -38,4 +44,4 @@ July had sections October doesn't: **Ladies Vintage Dress** (Ladies USA Dresses)
 
 ## Text-extraction caveats
 
-Some numbers came out garbled and shouldn't be trusted without the PDF: "Vintage Heavy 232" (Winter Mix) is likely an extraction error, and page 4's address is scrambled ("38.9 Krunstvep Greltha Road").
+Page 4's address came out scrambled ("38.9 Krunstvep Greltha Road"); the other pages read 36/8 Krungthep Kreetha Road. "Vintage Heavy 232" (Winter Mix) is plausible: October lists the same bale as Vintage Mix Heavy, 164 bales.

@@ -107,8 +107,8 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 }
 .cover-text .pills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .cover-text .pills span {
-  padding: 12px 20px; border-radius: 999px; background: rgba(247, 246, 244, 0.1);
-  font: 500 25px/1 var(--sans); color: var(--cream); white-space: nowrap;
+  padding: 11px 18px; border-radius: 999px; background: rgba(247, 246, 244, 0.1);
+  font: 500 24px/1 var(--sans); color: var(--cream); white-space: nowrap;
 }
 .cover-text .pillars { margin-top: 34px; font: 400 28px/1.45 var(--sans); color: rgba(247, 246, 244, 0.85); }
 /* Line drawing of bales, top right, opposite the logo (--no-cover-art turns it off). */
