@@ -1,6 +1,7 @@
 /* Retro Revival Thailand — Stock Drop carousel
-   Every slide is 1080 x 1350 (Instagram 4:5). Colours come from the logo:
-   see docs/strategy/brand-direction.md#colours. */
+   Every slide is 1080 x 1350 (Instagram 4:5). Look and colours follow the client's July 2026
+   carousel: black, gold and warm cream over their warehouse photo (docs/research/july-carousel.md).
+   Backgrounds in bg/ are made by tools/make_backgrounds.py. */
 
 @font-face {
   font-family: "Cormorant Garamond";
@@ -21,32 +22,35 @@
 }
 
 :root {
-  --navy: #1c2c3c;        /* wordmark */
-  --navy-deep: #131f2c;   /* dark slide background */
-  --gold: #b88830;        /* lions and monogram */
-  --gold-light: #d2ad66;  /* gold for text on navy */
-  --gold-dark: #8a6420;   /* gold for small text on cream */
-  --cream: #f7f6f4;       /* logo background */
-  --paper: #eeeae3;       /* list-slide background, a shade deeper than cream */
-  --card: #fbfaf8;        /* list-row container */
-  --qty-box: #efe3c6;     /* bale-number box, a light gold tint */
-  --rule: rgba(28, 44, 60, 0.16);
+  --ink: #0d0f0e;         /* July's near-black */
+  --navy: #0d0f0e;        /* text on gold (kept as a name for the pills) */
+  --gold: #c9993f;        /* July's "Stock Drop" gold */
+  --gold-light: #e0bb68;  /* headings and accents on black */
+  --gold-dark: #c9a45c;   /* packing labels on dark rows */
+  --cream: #f1e6cf;       /* July's warm cream lettering */
+  --paper: #0d0f0e;       /* list-slide base under the photo */
+  --card: rgba(16, 18, 17, 0.78);   /* list row: dark glass over the photo */
+  --card-line: rgba(224, 187, 104, 0.32);
+  --qty-box: linear-gradient(180deg, #e0bb68, #c9993f);  /* gold, like July's banner */
   --serif: "Cormorant Garamond", Georgia, serif;
   --sans: "Inter", Helvetica, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #555; font-family: var(--sans); color: var(--navy); }
+body { background: #555; font-family: var(--sans); color: var(--cream); }
 
 .slide {
   position: relative;
   width: 1080px;
   height: 1350px;
   overflow: hidden;
-  background: var(--paper);
   margin: 0 auto 40px;
+  /* List slides: July's bale shelves, darkened so the rows stay the focus. */
+  background:
+    linear-gradient(180deg, rgba(13,15,14,0.84), rgba(13,15,14,0.90)),
+    url("bg/list.jpg") center / cover, var(--paper);
 }
-.slide.dark { background: var(--navy-deep); color: var(--cream); }
+.slide.dark { background: var(--ink); color: var(--cream); }
 
 .eyebrow {
   font: 600 20px/1 var(--sans);
@@ -63,38 +67,26 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 /* WhatsApp is the one call to action, so it gets a pill. */
 .wa {
   display: inline-flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 999px;
-  background: var(--navy); color: var(--cream); font: 700 30px/1 var(--sans); letter-spacing: 0.01em;
+  background: var(--qty-box); color: var(--ink); font: 700 30px/1 var(--sans); letter-spacing: 0.01em;
 }
-.wa b { font: 700 16px/1 var(--sans); letter-spacing: 0.2em; color: var(--gold-light); }
-.footer .ig { font: 500 24px/1 var(--sans); color: rgba(28, 44, 60, 0.7); }
+.wa b { font: 700 16px/1 var(--sans); letter-spacing: 0.2em; color: rgba(13, 15, 14, 0.75); }
+.footer .ig { font: 500 24px/1 var(--sans); color: rgba(241, 230, 207, 0.7); }
 
 /* ---------- Cover ---------- */
 
 .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-/* Used when there is no warehouse photo: brand navy with a soft light at the top. */
-.photo.none {
-  background:
-    repeating-linear-gradient(180deg, rgba(255,255,255,0.035) 0 54px, transparent 54px 60px),
-    radial-gradient(120% 80% at 50% 30%, #2a3d52 0%, #131f2c 70%);
-}
+/* Default cover background: the client's warehouse photo (tools/make_backgrounds.py). */
+.photo.none { background: url("bg/cover.jpg") center / cover; }
 .shade {
   position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(19,31,44,0.50) 0%, rgba(19,31,44,0.20) 30%,
-    rgba(19,31,44,0.85) 62%, rgba(19,31,44,0.98) 100%);
+    rgba(13,15,14,0.72) 0%, rgba(13,15,14,0.55) 22%, rgba(13,15,14,0.62) 34%,
+    rgba(13,15,14,0.88) 54%, rgba(13,15,14,0.97) 100%);
 }
 
-/* The logo file has an off-white background, so it sits on a matching plate. */
-.plate {
-  position: absolute; top: 80px; left: 80px;
-  background: var(--cream); padding: 26px 34px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-}
-.plate::before {
-  content: ""; position: absolute; inset: 10px;
-  border: 1px solid rgba(184, 136, 48, 0.55); pointer-events: none;
-}
-.plate img { display: block; height: 250px; }
+/* Logo straight on the photo, as in July: the traced SVG with a cream wordmark. */
+.plate { position: absolute; top: 80px; left: 80px; filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6)); }
+.plate img { display: block; height: 270px; }
 
 /* Cover */
 .cover-text { position: absolute; left: 80px; right: 80px; bottom: 120px; }
@@ -107,16 +99,16 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 }
 .cover-text .pills { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 10px; }
 .cover-text .pills span {
-  padding: 12px 20px; border-radius: 999px; background: rgba(247, 246, 244, 0.1);
-  font: 500 25px/1 var(--sans); color: var(--cream); white-space: nowrap;
+  padding: 11px 18px; border-radius: 999px; background: rgba(13, 15, 14, 0.55); box-shadow: inset 0 0 0 1px var(--card-line);
+  font: 500 24px/1 var(--sans); color: var(--cream); white-space: nowrap;
 }
-.cover-text .pillars { margin-top: 34px; font: 400 28px/1.45 var(--sans); color: rgba(247, 246, 244, 0.85); }
-/* Line drawing of bales, top right, opposite the logo (--no-cover-art turns it off). */
+.cover-text .pillars { margin-top: 34px; font: 400 28px/1.45 var(--sans); color: rgba(241, 230, 207, 0.85); }
+/* Line drawing of bales, top right, opposite the logo. Off by default since the cover uses the
+   warehouse photo; --cover-art turns it back on. */
 .cover-art { position: absolute; right: 56px; top: 96px; width: 440px; color: var(--gold-light); opacity: 0.9; }
 .cover-art svg { display: block; width: 100%; height: auto; }
 .cover-contacts { margin-top: 30px; display: flex; }
-.cover-contacts .wa { background: var(--gold-light); color: var(--navy); font-size: 34px; padding: 18px 30px; }
-.cover-contacts .wa b { color: var(--navy); }
+.cover-contacts .wa { font-size: 34px; padding: 18px 30px; }
 .swipe {
   position: absolute; right: 80px; bottom: 120px;
   font: 600 18px/1 var(--sans); letter-spacing: 0.3em; color: var(--cream);
@@ -133,7 +125,7 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
   display: flex; align-items: flex-end; gap: 20px;
   height: 88px; padding: 0 0 16px 22px;
 }
-.section-head h2 { margin: 0; font: 600 62px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; }
+.section-head h2 { margin: 0; font: 600 62px/1 var(--serif); font-variant-numeric: lining-nums; white-space: nowrap; color: var(--gold-light); }
 .section-head .qt {
   margin-left: auto; padding-bottom: 8px; font: 600 18px/1 var(--sans); letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--gold-dark); text-align: center;
@@ -149,14 +141,14 @@ body { background: #555; font-family: var(--sans); color: var(--navy); }
 .rows .item {
   /* Each line sits in a soft container; the gap between containers replaces rules. */
   flex: 1; min-width: 0; display: flex; align-items: center; gap: 16px;
-  padding: 0 22px; background: var(--card); border-radius: 12px;
+  padding: 0 22px; background: var(--card); border: 1px solid var(--card-line); border-radius: 12px;
 }
 .rows .cat { flex: 1; min-width: 0; font: 500 min(calc(var(--row) * 0.44), 32px)/1.15 var(--sans); letter-spacing: -0.005em; white-space: nowrap; overflow: hidden; }
 .rows .pk { flex: none; font: 600 calc(var(--row) * 0.27)/1 var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-dark); white-space: nowrap; overflow: hidden; }
 .rows .qty {
   flex: none; display: flex; align-items: center; justify-content: center;
-  background: var(--qty-box); border-radius: 12px;
-  font: 600 calc(var(--row) * 0.5)/1 var(--sans); font-variant-numeric: tabular-nums;
+  background: var(--qty-box); border-radius: 12px; color: var(--ink);
+  font: 700 calc(var(--row) * 0.5)/1 var(--sans); font-variant-numeric: tabular-nums;
 }
 
 /* Two columns for a section too long for one (e.g. Jeans). Reads down the left column, then

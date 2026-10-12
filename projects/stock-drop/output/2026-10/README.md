@@ -6,7 +6,7 @@ Post the slides in order, 01.png to 08.png.
 
 **Caption:** [caption.txt](caption.txt), ready to paste.
 
-Built 2026-10-10 from `data/2026-10.csv`: 80 lines, 641 bales. Don't edit this folder: the build replaces it.
+Built 2026-10-12 from `data/2026-10.csv`: 80 lines, 641 bales. Don't edit this folder: the build replaces it.
 
 | # | Slide |
 | :- | :- |

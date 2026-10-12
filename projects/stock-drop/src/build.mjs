@@ -1,7 +1,7 @@
 // Builds the monthly Stock Drop carousel from the client's inventory sheet.
 //
 //   npm run build -- data/2026-10.xlsx   (or .csv)   -> output/2026-10/*.png
-//   add --no-cover-art to leave the line drawing of bales off the cover
+//   add --cover-art to put the line drawing of bales on the cover (off by default)
 //
 // The sheet is the only source of truth: descriptions, packing, and quantities
 // are printed exactly as written (surrounding spaces trimmed), in sheet order.
@@ -243,7 +243,7 @@ function buildSlides(inv, { month, year }, assets) {
       <h1>Stock Drop</h1>
       <div class="month">${esc(label)}</div>
       <div class="pills">${inv.sections.map((x) => `<span>${esc(x.name)}</span>`).join("")}</div>
-      <div class="pillars">Lat Krabang, Bangkok · ${esc(CONTACT.locationPitch)}</div>
+      <div class="pillars">Warehouse C5, Lat Krabang, Bangkok<br>${esc(CONTACT.locationPitch)}</div>
       <div class="cover-contacts"><span class="wa"><b>WHATSAPP</b>${esc(CONTACT.whatsapp)}</span></div>
     </div>
     <div class="swipe">SWIPE<span>→</span></div>
@@ -270,7 +270,7 @@ function buildSlides(inv, { month, year }, assets) {
 
 const args = process.argv.slice(2);
 const fileArg = args.find((a) => !a.startsWith("--"));
-const coverArt = !args.includes("--no-cover-art"); // line drawing of bales on the cover (on by default)
+const coverArt = args.includes("--cover-art"); // line drawing of bales on the cover (off: the photo shows real bales)
 if (!fileArg) fail("usage: npm run build -- data/2026-10.xlsx");
 const file = resolve(process.cwd(), fileArg);
 if (!existsSync(file)) fail(`can't find ${file}`);
@@ -285,7 +285,7 @@ mkdirSync(outDir, { recursive: true });
 const rel = (p) => relative(outDir, p).split("\\").join("/");
 const photoPath = findPhoto();
 const assets = {
-  logo: rel(join(REPO, "assets/brand/logo-primary-trimmed.png")),
+  logo: rel(join(REPO, "assets/brand/logo-traced-light.svg")),
   photo: photoPath ? rel(photoPath) : null,
   coverArt: coverArt ? readFileSync(join(ROOT, "template/art/bales-line.svg"), "utf8") : null,
 };

@@ -15,6 +15,11 @@ export const CORRECTIONS = [
 // Section names as buyers should see them, keyed by the exact name in the sheet.
 export const SECTION_NAMES = {
   "3 button": "Collar T-shirts (3 buttons)", // Hammad, 2026-10-10
+  // The client's own headings from their July 2026 carousel (docs/research/july-carousel.md)
+  Baby: "Children (0–14 years)",
+  Overall: "Overalls",
+  Pants: "Cotton Pants",
+  Winter: "Winter Mix",
 };
 
 export function correct(text) {

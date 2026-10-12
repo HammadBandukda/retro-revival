@@ -38,6 +38,15 @@ Sampled from the official logo.
 | Gold | `#B88830` | Lions and monogram |
 | Off-white | `#F7F6F4` | Logo background |
 
+**Social posts** follow the client's July carousel instead (sampled from its pages, set in `projects/stock-drop/template/styles.css`):
+
+| Name | Hex | Use |
+| :- | :- | :- |
+| Near-black | `#0D0F0E` | Backgrounds, text on gold |
+| Gold | `#C9993F` | Bale-count boxes, WhatsApp pill (with Gold light as a gradient) |
+| Gold light | `#E0BB68` | Headings and accents on black |
+| Warm cream | `#F1E6CF` | Main text on black |
+
 ## Typography
 
 - **Cormorant Garamond** for headings and numbers: the editorial, heritage voice.
@@ -50,4 +59,4 @@ Sampled from the official logo.
   - Cropped copy, with no other changes: `logo-primary-trimmed.png`.
   - Vector traces (working copies, recolourable): `logo-traced.svg` and `logo-traced-light.svg` for dark backgrounds. See [assets/brand](../../assets/brand/README.md).
   - The client's original vector file is still wanted: the traces are softer than the master artwork (see [open questions](../client/open-questions.md)).
-- **Warehouse photography:** none exists yet. Designs use the brand navy instead of a photo. If real photos turn up, store them in `assets/photos/`.
+- **Warehouse photography:** real photos are in [assets/photos](../../assets/photos/README.md), including the "Welcome to vintage world" banner with the logo. Use them, darkened, behind text. Never post the one with a child in it.

@@ -15,7 +15,6 @@ From the [October critique](../projects/stock-drop/reviews/2026-10-critique.html
 - [ ] **[Claude]** Slide 05 (Jeans): add a "BALES" label above the left column of boxes, and ease the crowding in the two rows whose names wrap
 - [ ] **[Hammad]** Try bigger bale names (34–36px) on one-column slides? Currently 32px, under the ~37px guideline
 
-- [ ] **[Claude]** Cover: align the drawing's top with the logo plate
 - [ ] **[Client]** Tidy capitalisation in the sheet? ("Carhartt jeans", "Vintage mix Trouser", "Levi's Mix coded/codes")
 - [ ] **[Hammad]** Review the caption: [captions/2026-10.md](../projects/stock-drop/captions/2026-10.md)
 - [ ] **[Hammad]** Upload the original `ETA141026.xlsx` to `projects/stock-drop/data/` on GitHub. The file on record is a CSV rebuilt from the sheet's text
