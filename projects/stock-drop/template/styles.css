@@ -47,7 +47,7 @@ body { background: #555; font-family: var(--sans); color: var(--cream); }
   margin: 0 auto 40px;
   /* List slides: July's bale shelves, darkened so the rows stay the focus. */
   background:
-    linear-gradient(180deg, rgba(13,15,14,0.62), rgba(13,15,14,0.80)),
+    linear-gradient(180deg, rgba(13,15,14,0.84), rgba(13,15,14,0.90)),
     url("bg/list.jpg") center / cover, var(--paper);
 }
 .slide.dark { background: var(--ink); color: var(--cream); }
@@ -75,13 +75,13 @@ body { background: #555; font-family: var(--sans); color: var(--cream); }
 /* ---------- Cover ---------- */
 
 .photo { position: absolute; inset: 0; background-size: cover; background-position: center; }
-/* Default cover background: the warehouse aisle from the client's July carousel. */
-.photo.none { background: url("bg/cover.jpg") center / cover; filter: brightness(1.45) contrast(1.05); }
+/* Default cover background: the client's warehouse photo (tools/make_backgrounds.py). */
+.photo.none { background: url("bg/cover.jpg") center / cover; }
 .shade {
   position: absolute; inset: 0;
   background: linear-gradient(180deg,
-    rgba(13,15,14,0.20) 0%, rgba(13,15,14,0) 30%,
-    rgba(13,15,14,0.78) 58%, rgba(13,15,14,0.96) 100%);
+    rgba(13,15,14,0.72) 0%, rgba(13,15,14,0.55) 22%, rgba(13,15,14,0.62) 34%,
+    rgba(13,15,14,0.88) 54%, rgba(13,15,14,0.97) 100%);
 }
 
 /* Logo straight on the photo, as in July: the traced SVG with a cream wordmark. */

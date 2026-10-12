@@ -24,7 +24,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 | :- | :- |
 | Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities. The exceptions are approved brand-spelling fixes and section names in `src/corrections.mjs` |
 | Logo | Official. Use the file as is. Never redraw it |
-| Warehouse photo | Taken from the client's [July carousel](../../docs/research/july-carousel.md) (`assets/screenshots/2026-07-client-carousel.pdf`): `tools/make_backgrounds.py` crops its warehouse photo and paints out the text. If a clean original turns up, save it as `assets/photos/warehouse.jpg` and the cover uses it instead |
+| Warehouse photos | Real photos in [assets/photos](../../assets/photos/README.md). `tools/make_backgrounds.py` crops them into `template/bg/`. Never use `bales-closeup-child.jpg` (a child is in the shot) |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
 
 ## Monthly workflow
@@ -62,7 +62,7 @@ The build reads the client's own layout. Columns are matched by header name, so 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide cap:** the build stops if every section can't fit whole within 9 slides.
-- **Backgrounds:** the cover shows the warehouse aisle and the list slides show darkened bale shelves, both from the July carousel (`template/bg/`). If `assets/photos/warehouse.jpg` exists, the cover uses it instead.
+- **Backgrounds:** the cover shows the real warehouse, with the "Welcome to vintage world · Retro Revival" banner top right and bales behind the text. The list slides show the labelled jeans bales, darkened (`template/bg/`, made by `tools/make_backgrounds.py`).
 - **Cover art:** the gold line drawing of bales (`template/art/bales-line.svg`) is off now that the cover shows real bales. Add `--cover-art` to the build to bring it back.
 
 ### Data on file
@@ -90,7 +90,7 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 
 ## Design system
 
-- **Look:** follows the client's July carousel, so buyers who saw July recognise it: near-black, gold and warm cream over their warehouse photo. Before/after: [reviews/2026-10-july-restyle.png](reviews/2026-10-july-restyle.png).
+- **Look:** follows the client's July carousel, so buyers who saw July recognise it: near-black, gold and warm cream over a darkened warehouse photo. Before/after: [reviews/2026-10-july-restyle.png](reviews/2026-10-july-restyle.png).
 - **List rows:** each bale line sits in a dark glass container with a thin gold edge, with the bale count in a gold box beside it (like July's gold banners). No rules or dotted leaders: the containers guide the eye.
 - **Cover pills:** the build checks that the pills never run into the logo (or the drawing, if it's on).
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
@@ -106,7 +106,7 @@ stock-drop/
 ├── data/        # one inventory sheet per month (.xlsx or .csv)
 ├── src/         # build script, contact details, spelling fixes
 ├── template/    # styles, fonts, backgrounds (bg/)
-├── tools/       # make_backgrounds.py: backgrounds from the July carousel
+├── tools/       # make_backgrounds.py: backgrounds from the warehouse photos
 ├── output/      # built slides, caption and zip, one folder per month (rebuilt each run)
 ├── captions/    # Instagram caption per month (social skill)
 └── reviews/     # design critique per month (critique skill)

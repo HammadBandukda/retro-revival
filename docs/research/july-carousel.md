@@ -32,7 +32,7 @@ July had sections October doesn't: **Ladies Vintage Dress** (Ladies USA Dresses)
 - **Section headings:** where July named the same section, the Stock Drop uses the client's heading: Baby → "Children (0–14 years)", Overall → "Overalls", Pants → "Cotton Pants", Winter → "Winter Mix" (`projects/stock-drop/src/corrections.mjs`).
 - **Warehouse C5** on the cover location line, and the street address in the [caption](../../projects/stock-drop/captions/2026-10.md).
 - The "ask for a category" invitation, moved into the caption.
-- **The look:** near-black, gold and warm cream over the warehouse photo, gold-framed containers, gold highlight boxes ([colours](../strategy/brand-direction.md#colours)). The photo comes from page 1 with the text painted out (`projects/stock-drop/tools/make_backgrounds.py`).
+- **The look:** near-black, gold and warm cream over a darkened warehouse photo, gold-framed containers, gold highlight boxes ([colours](../strategy/brand-direction.md#colours)). We use the client's own warehouse photos ([assets/photos](../../assets/photos/README.md)), not the aisle photo from July.
 - **Not taken:** the condensed all-caps headings and the icons. The Stock Drop keeps its serif headings and plain lists.
 
 ## How ours differs

@@ -59,4 +59,4 @@ Sampled from the official logo.
   - Cropped copy, with no other changes: `logo-primary-trimmed.png`.
   - Vector traces (working copies, recolourable): `logo-traced.svg` and `logo-traced-light.svg` for dark backgrounds. See [assets/brand](../../assets/brand/README.md).
   - The client's original vector file is still wanted: the traces are softer than the master artwork (see [open questions](../client/open-questions.md)).
-- **Warehouse photography:** no clean originals yet. The Stock Drop uses the warehouse photo from the client's July carousel, with the text painted out ([july-carousel.md](../research/july-carousel.md)). Ask the client for the original photo; store it in `assets/photos/`.
+- **Warehouse photography:** real photos are in [assets/photos](../../assets/photos/README.md), including the "Welcome to vintage world" banner with the logo. Use them, darkened, behind text. Never post the one with a child in it.
