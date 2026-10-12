@@ -6,7 +6,7 @@ Last updated: 2026-10-10
 
 ## Product Overview
 
-Retro Revival Co. Ltd., Bangkok: B2B wholesale of sealed, pre-sorted bales of vintage and branded second-hand clothing. Fresh containers arrive every month.
+Retro Revival Co. Ltd., Bangkok: B2B wholesale of sealed, pre-sorted bales of vintage and branded second-hand clothing. Monthly containers are claimed but **TBC** (open question 13).
 → [business profile](../docs/research/business-profile.md)
 
 ## Target Audience
@@ -26,7 +26,7 @@ ZewGrags72, Wing999, Retro Vintage, SPS Vintage Clothing.
 
 ## Differentiation
 
-Registered company, a real warehouse 20 minutes from Suvarnabhumi Airport, monthly containers, sorted bales, polished video.
+Registered company, a real warehouse 20 minutes from Suvarnabhumi Airport, sorted bales, monthly containers (TBC), polished video.
 → [business profile](../docs/research/business-profile.md), [assessment](../docs/strategy/assessment.md)
 
 ## Objections
