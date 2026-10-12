@@ -1,0 +1,101 @@
+{
+  "source_lines": 80,
+  "source_bales": 641,
+  "line_check_matches_source": true,
+  "line_check_rows": 80,
+  "slide_plan": {
+    "2": {
+      "lines": 8,
+      "bales": 32
+    },
+    "3": {
+      "lines": 12,
+      "bales": 68
+    },
+    "4": {
+      "lines": 10,
+      "bales": 195
+    },
+    "5": {
+      "lines": 19,
+      "bales": 61
+    },
+    "6": {
+      "lines": 12,
+      "bales": 31
+    },
+    "7": {
+      "lines": 14,
+      "bales": 70
+    },
+    "8": {
+      "lines": 5,
+      "bales": 184
+    }
+  },
+  "images": [
+    {
+      "file": "01.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "02.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "03.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "04.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "05.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "06.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "07.png",
+      "size": [
+        1080,
+        1350
+      ]
+    },
+    {
+      "file": "08.png",
+      "size": [
+        1080,
+        1350
+      ]
+    }
+  ],
+  "visual_reference": "July 2026 client carousel",
+  "visual_checks": [
+    "July-style cover hierarchy and gold brush treatment",
+    "iconography on cover categories and inner section headings",
+    "warehouse photo backgrounds, gold frames, and legible table rows"
+  ],
+  "image_generation": "Built-in ChatGPT image generation used for transparent gold brush texture; official logo and source warehouse photos retained."
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>October 2026 Stock Drop · Carousel Preview</title>
+  <style>
+    :root { color-scheme: dark; --ink: #0d0f0e; --gold: #c9993f; --cream: #f1e6cf; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at top, #22231e, var(--ink) 68%); color: var(--cream); font: 16px/1.4 system-ui, sans-serif; }
+    main { width: min(100% - 32px, 960px); margin: 0 auto; padding: 28px 0 36px; }
+    header { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin: 0 0 16px; }
+    h1 { margin: 0; font-size: clamp(1.25rem, 4vw, 2rem); letter-spacing: .015em; }
+    .sub { margin: 4px 0 0; color: #c8bda8; font-size: .9rem; }
+    .count { flex: none; color: var(--gold); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .stage { position: relative; display: grid; place-items: center; overflow: hidden; padding: 12px; border: 1px solid #80652f; border-radius: 14px; background: #10110f; box-shadow: 0 18px 50px #0008; }
+    .slide { display: block; width: min(100%, 650px); max-height: min(72vh, 900px); aspect-ratio: 4 / 5; object-fit: contain; border-radius: 5px; }
+    .nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border: 1px solid #e0bb68; border-radius: 50%; background: #0d0f0eee; color: var(--cream); font-size: 1.55rem; cursor: pointer; }
+    .nav:hover { background: #c9993f; color: #0d0f0e; }
+    .nav:focus-visible, .dot:focus-visible { outline: 3px solid var(--cream); outline-offset: 3px; }
+    .prev { left: 22px; } .next { right: 22px; }
+    .controls { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-top: 16px; }
+    .dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+    .dot { width: 13px; height: 13px; padding: 0; border: 1px solid var(--gold); border-radius: 50%; background: transparent; cursor: pointer; }
+    .dot[aria-current="true"] { background: var(--gold); box-shadow: 0 0 0 3px #c9993f33; }
+    .thumbs { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 9px; width: min(100%, 720px); }
+    .thumb { display: block; padding: 3px; border: 1px solid #62502b; border-radius: 5px; background: #111; cursor: pointer; }
+    .thumb[aria-current="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+    .thumb img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .hint { margin: 0; color: #aaa18f; font-size: .8rem; text-align: center; }
+    @media (max-width: 560px) {
+      main { width: min(100% - 18px, 960px); padding-top: 18px; }
+      .stage { padding: 6px; border-radius: 9px; }
+      .slide { max-height: 68vh; }
+      .nav { width: 38px; height: 38px; font-size: 1.25rem; }
+      .prev { left: 11px; } .next { right: 11px; }
+      .thumbs { gap: 5px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>Stock Drop · October 2026</h1><p class="sub">Swipe, use the arrows, or pick a slide below.</p></div>
+      <div id="count" class="count" aria-live="polite">01 / 08</div>
+    </header>
+    <section class="stage" aria-label="Carousel preview">
+      <img id="slide" class="slide" src="01.png" alt="Stock Drop slide 1 of 8" draggable="false">
+      <button id="prev" class="nav prev" type="button" aria-label="Previous slide">‹</button>
+      <button id="next" class="nav next" type="button" aria-label="Next slide">›</button>
+    </section>
+    <nav class="controls" aria-label="Choose a slide">
+      <div id="dots" class="dots"></div>
+      <div id="thumbs" class="thumbs"></div>
+      <p class="hint">Use ← and → on your keyboard. The carousel does not auto-advance.</p>
+    </nav>
+  </main>
+  <script>
+    (() => {
+      const total = 8;
+      let current = 0;
+      const image = document.getElementById('slide');
+      const count = document.getElementById('count');
+      const dots = document.getElementById('dots');
+      const thumbs = document.getElementById('thumbs');
+      const filename = n => `${String(n + 1).padStart(2, '0')}.png`;
+
+      function show(n) {
+        current = (n + total) % total;
+        image.src = filename(current);
+        image.alt = `Stock Drop slide ${current + 1} of ${total}`;
+        count.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+        [...dots.children, ...thumbs.children].forEach((el, i) => el.setAttribute('aria-current', String(i % total === current)));
+      }
+
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot'; dot.type = 'button'; dot.setAttribute('aria-label', `Show slide ${i + 1}`);
+        dot.addEventListener('click', () => show(i)); dots.append(dot);
+        const thumb = document.createElement('button');
+        thumb.className = 'thumb'; thumb.type = 'button'; thumb.setAttribute('aria-label', `Show slide ${i + 1}`);
+        const preview = document.createElement('img'); preview.src = filename(i); preview.alt = '';
+        thumb.append(preview); thumb.addEventListener('click', () => show(i)); thumbs.append(thumb);
+      }
+
+      document.getElementById('prev').addEventListener('click', () => show(current - 1));
+      document.getElementById('next').addEventListener('click', () => show(current + 1));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') show(current - 1);
+        if (event.key === 'ArrowRight') show(current + 1);
+      });
+      let startX = null;
+      image.addEventListener('touchstart', event => { startX = event.changedTouches[0].clientX; }, { passive: true });
+      image.addEventListener('touchend', event => {
+        if (startX === null) return;
+        const delta = event.changedTouches[0].clientX - startX;
+        if (Math.abs(delta) > 45) show(current + (delta < 0 ? 1 : -1));
+        startX = null;
+      }, { passive: true });
+      show(0);
+    })();
+  </script>
+</body>
+</html>
