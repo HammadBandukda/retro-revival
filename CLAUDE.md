@@ -20,6 +20,7 @@ Retro Revival Co. Ltd. is a B2B vintage clothing wholesaler with a warehouse in 
 | Instagram, Facebook, other channels | [docs/research/online-presence.md](docs/research/online-presence.md) |
 | Warehouse reel breakdown | [docs/research/reel-analysis.md](docs/research/reel-analysis.md) |
 | Competitors | [docs/research/competitors.md](docs/research/competitors.md) |
+| Client's July 2026 carousel (their previous design) | [docs/research/july-carousel.md](docs/research/july-carousel.md) |
 | Installed Claude skills | [.claude/skills/README.md](.claude/skills/README.md) (review: [docs/research/claude-skills.md](docs/research/claude-skills.md)) |
 | Strengths and weaknesses | [docs/strategy/assessment.md](docs/strategy/assessment.md) |
 | Brand positioning, personality, audience | [docs/strategy/brand-direction.md](docs/strategy/brand-direction.md) |

@@ -13,6 +13,7 @@ When a question is answered, record the answer in [decisions.md](decisions.md) a
 - [ ] 9. Do they have any photo or video library beyond IG?
 - [ ] 10. Can they supply the logo as a vector file (SVG, AI, or EPS), or at least as a transparent PNG? Is there a light version for dark backgrounds? The current file is a 1280px PNG on an off-white background, and the "THAILAND" text on the ribbon is blurry. *(A traced SVG exists as a working copy; see [assets/brand](../../assets/brand/README.md).)*
 - [ ] 12. Does "ETA141026" mean the container arrives on 14 Oct 2026? If so, should the carousel say when the stock lands?
+- [ ] 13. Their July carousel says "worldwide shipping", "fresh stock every month", "carefully sorted" and "bulk orders welcome". Which of these are true and OK to repeat? See [july-carousel.md](../research/july-carousel.md)
 
 ## Unverified assumptions to confirm
 
