@@ -5,7 +5,7 @@
 | `logo-primary.png` | Official logo from Figma, 1280×853, off-white background | The source of truth |
 | `logo-primary-trimmed.png` | The same file, cropped to the logo | Raster use (the carousel cover today) |
 | `logo-traced.svg` | Vector trace, full colour, transparent background | Light backgrounds, any size |
-| `logo-traced-light.svg` | Vector trace with a cream wordmark | Dark backgrounds (navy) |
+| `logo-traced-light.svg` | Vector trace with a cream wordmark | Dark backgrounds and photos (the Stock Drop cover) |
 | `tools/trace_logo.py` | The script that made both SVGs | Re-tracing from a sharper PNG |
 | `tools/trace-check.png` | Original vs traced vs light, side by side | Checking the trace |
 

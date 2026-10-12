@@ -24,7 +24,7 @@ A monthly Instagram carousel that shows the latest inventory. It is meant to bec
 | :- | :- |
 | Inventory spreadsheet | **The only source of truth.** Never invent, rename, remove, merge, or change categories or quantities. The exceptions are approved brand-spelling fixes and section names in `src/corrections.mjs` |
 | Logo | Official. Use the file as is. Never redraw it |
-| Warehouse photo | None exists. The cover uses the brand navy background by design. If a real photo ever turns up, save it as `assets/photos/warehouse.jpg` and rebuild |
+| Warehouse photo | Taken from the client's [July carousel](../../docs/research/july-carousel.md) (`assets/screenshots/2026-07-client-carousel.pdf`): `tools/make_backgrounds.py` crops its warehouse photo and paints out the text. If a clean original turns up, save it as `assets/photos/warehouse.jpg` and the cover uses it instead |
 | Layout reference | Layout inspiration only. Don't copy its colours, typography, or branding |
 
 ## Monthly workflow
@@ -62,8 +62,8 @@ The build reads the client's own layout. Columns are matched by header name, so 
 - **Totals check:** the build stops if the lines don't add up to the sheet's total row.
 - **Overflow check:** the build stops if any text would be cut off.
 - **Slide cap:** the build stops if every section can't fit whole within 9 slides.
-- **Cover art:** a gold line drawing of strapped bales sits in the top right corner (`template/art/bales-line.svg`), opposite the logo. Add `--no-cover-art` to the build to leave it off.
-- **Cover background:** brand navy. If `assets/photos/warehouse.jpg` exists, the build uses it instead. Add the file and rebuild to switch to the photo.
+- **Backgrounds:** the cover shows the warehouse aisle and the list slides show darkened bale shelves, both from the July carousel (`template/bg/`). If `assets/photos/warehouse.jpg` exists, the cover uses it instead.
+- **Cover art:** the gold line drawing of bales (`template/art/bales-line.svg`) is off now that the cover shows real bales. Add `--cover-art` to the build to bring it back.
 
 ### Data on file
 
@@ -77,10 +77,10 @@ Less is more: **9 slides at most** (cover plus up to 8 list slides), built mobil
 
 | # | Slide | Content |
 | :- | :- | :- |
-| 1 | Cover | Logo top left, line drawing of bales top right, "Stock Drop" on one line, month, every section as a pill, location, WhatsApp in a gold pill |
+| 1 | Cover | Warehouse photo, logo top left, "Stock Drop" on one line, month, every section as a pill, location, WhatsApp in a gold pill |
 | 2–7 | List | Section name, then one row per bale: a container with the description and packing, and a separate box with the number of bales. One "BALES" label per slide sits above the boxes. **A section is never split across slides** |
 
-- List slides carry only the list, plus a footer with WhatsApp (in a navy pill) and the Instagram handle. LINE is not shown. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
+- List slides carry only the list, plus a footer with WhatsApp (in a gold pill) and the Instagram handle. LINE is not shown. The logo appears on the cover only. No index, totals, page numbers, or section numbers.
 - **Packing:** sections are rearranged to fit, largest first, so the slides don't follow sheet order. Within a slide, sections keep sheet order.
 - **Emptiest slide last:** the slide with the most free space always goes at the end, so the carousel never looks finished early.
 - **Auto-fit:** the build tries row heights from 80px down to 60px and uses the biggest where every section fits whole within 9 slides and no slide is less than half full. Bale names are capped at 32px so long names never cut off.
@@ -90,11 +90,12 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 
 ## Design system
 
-- **List rows:** each bale line sits in a soft, near-white container on a warm cream slide, with the bale count in a light gold box beside it. No rules or dotted leaders: the containers guide the eye.
-- **Cover pills:** the build checks that the pills never run into the logo or the drawing.
+- **Look:** follows the client's July carousel, so buyers who saw July recognise it: near-black, gold and warm cream over their warehouse photo. Before/after: [reviews/2026-10-july-restyle.png](reviews/2026-10-july-restyle.png).
+- **List rows:** each bale line sits in a dark glass container with a thin gold edge, with the bale count in a gold box beside it (like July's gold banners). No rules or dotted leaders: the containers guide the eye.
+- **Cover pills:** the build checks that the pills never run into the logo (or the drawing, if it's on).
 - **Colours:** taken from the logo (see [brand direction](../../docs/strategy/brand-direction.md#colours)).
 - **Type:** Cormorant Garamond for headings, always with lining figures (its default old-style numerals drop below the line). Inter for descriptions, packing, and bale quantities. Both use the SIL Open Font License, and the files are bundled in `template/fonts/`.
-- **Logo:** `assets/brand/logo-primary-trimmed.png` is the official file, cropped only, on an off-white plate. Traced SVGs with a transparent background now exist ([brand assets](../../assets/brand/README.md)); whether the cover switches to the light SVG is an [open to-do](../../to-dos/brand.md).
+- **Logo:** the traced light SVG (`assets/brand/logo-traced-light.svg`, cream wordmark), straight on the photo as in July. It's a trace of the official PNG, not a redraw ([brand assets](../../assets/brand/README.md)). If the client sends the original vector, it replaces the trace.
 - **Format:** 1080 × 1350 px (Instagram 4:5).
 - **Figma:** slide 06 is rebuilt as editable layers in [Quick Projects → Retro Revival → Stock Drop](https://www.figma.com/design/fmHPTOHu3ddCyy2toFmtS3/Quick-Projects?node-id=3012-191), with a `Bale Row` component (Name, Packing, Bales text properties) and a "Retro Revival" colour variable collection. The build script is still the source of the posted slides.
 
@@ -104,7 +105,8 @@ Contact details come from `src/brand.mjs`. Keep that file in sync with the [busi
 stock-drop/
 ├── data/        # one inventory sheet per month (.xlsx or .csv)
 ├── src/         # build script, contact details, spelling fixes
-├── template/    # styles and fonts
+├── template/    # styles, fonts, backgrounds (bg/)
+├── tools/       # make_backgrounds.py: backgrounds from the July carousel
 ├── output/      # built slides, caption and zip, one folder per month (rebuilt each run)
 ├── captions/    # Instagram caption per month (social skill)
 └── reviews/     # design critique per month (critique skill)

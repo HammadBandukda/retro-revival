@@ -3,7 +3,7 @@
 The stock carousel the client made before ours. It's the reference for what they've posted before, not a template.
 
 - **File:** `retro_revival_carousel.pdf`, 7 pages, in Hammad's Google Drive [RetroRevival folder](https://drive.google.com/drive/folders/1XfjbkPLQb81cQHnPF406G6Rd7NV5MOcL). Not in the repo.
-- **Reviewed from:** the PDF's extracted text only. The visual design hasn't been reviewed yet.
+- **Copy in the repo:** `assets/screenshots/2026-07-client-carousel.pdf`. Each page is a single flattened 1092 × 1092 image, with pillarboxed portrait designs on pages 2–7 and a "PhotoGrid" watermark.
 
 ## What's on it
 
@@ -32,6 +32,8 @@ July had sections October doesn't: **Ladies Vintage Dress** (Ladies USA Dresses)
 - **Section headings:** where July named the same section, the Stock Drop uses the client's heading: Baby → "Children (0–14 years)", Overall → "Overalls", Pants → "Cotton Pants", Winter → "Winter Mix" (`projects/stock-drop/src/corrections.mjs`).
 - **Warehouse C5** on the cover location line, and the street address in the [caption](../../projects/stock-drop/captions/2026-10.md).
 - The "ask for a category" invitation, moved into the caption.
+- **The look:** near-black, gold and warm cream over the warehouse photo, gold-framed containers, gold highlight boxes ([colours](../strategy/brand-direction.md#colours)). The photo comes from page 1 with the text painted out (`projects/stock-drop/tools/make_backgrounds.py`).
+- **Not taken:** the condensed all-caps headings and the icons. The Stock Drop keeps its serif headings and plain lists.
 
 ## How ours differs
 
